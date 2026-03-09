@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultra Laptop Pro - TechStore</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; background: #f5f5f5; color: #333; }
+        .nav { background: #2c3e50; color: #fff; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .nav a { color: #fff; text-decoration: none; margin: 0 1rem; }
+        .breadcrumb { background: #fff; padding: 1rem 2rem; }
+        .breadcrumb a { color: #3498db; text-decoration: none; }
+        .section { padding: 3rem 2rem; max-width: 1400px; margin: 0 auto; }
+        .product-container { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; background: #fff; padding: 3rem; border-radius: 15px; box-shadow: 0 2px 20px rgba(0,0,0,0.1); }
+        .product-gallery { display: flex; flex-direction: column; gap: 1rem; }
+        .main-image { width: 100%; aspect-ratio: 1; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 10rem; color: #fff; }
+        .thumbnail-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+        .thumbnail { aspect-ratio: 1; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 2rem; cursor: pointer; border: 3px solid transparent; transition: 0.3s; }
+        .thumbnail:hover, .thumbnail.active { border-color: #3498db; transform: scale(1.05); }
+        .product-info h1 { font-size: 2.5rem; color: #2c3e50; margin-bottom: 1rem; }
+        .rating { color: #f39c12; margin-bottom: 1rem; font-size: 1.2rem; }
+        .price-section { background: #ecf0f1; padding: 1.5rem; border-radius: 10px; margin: 1.5rem 0; }
+        .price { font-size: 3rem; color: #e74c3c; font-weight: bold; }
+        .original-price { text-decoration: line-through; color: #95a5a6; font-size: 1.5rem; margin-left: 1rem; }
+        .discount-badge { background: #e74c3c; color: #fff; padding: 0.5rem 1rem; border-radius: 20px; display: inline-block; margin-left: 1rem; }
+        .product-options { margin: 2rem 0; }
+        .option-group { margin-bottom: 1.5rem; }
+        .option-group label { display: block; font-weight: bold; margin-bottom: 0.5rem; color: #2c3e50; }
+        .option-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .option-btn { padding: 0.8rem 1.5rem; border: 2px solid #ddd; background: #fff; cursor: pointer; border-radius: 5px; transition: 0.3s; }
+        .option-btn:hover, .option-btn.selected { border-color: #3498db; background: #3498db; color: #fff; }
+        .quantity-selector { display: flex; align-items: center; gap: 1rem; }
+        .qty-btn { width: 40px; height: 40px; border: 2px solid #3498db; background: #fff; color: #3498db; font-size: 1.5rem; cursor: pointer; border-radius: 5px; transition: 0.3s; }
+        .qty-btn:hover { background: #3498db; color: #fff; }
+        .qty-input { width: 60px; text-align: center; font-size: 1.2rem; border: 2px solid #ddd; border-radius: 5px; padding: 0.5rem; }
+        .action-buttons { display: flex; gap: 1rem; margin-top: 2rem; }
+        .btn { padding: 1rem 2rem; border: none; border-radius: 5px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .btn-primary { background: #3498db; color: #fff; flex: 1; }
+        .btn-primary:hover { background: #2980b9; transform: translateY(-2px); }
+        .btn-secondary { background: #fff; color: #3498db; border: 2px solid #3498db; }
+        .btn-secondary:hover { background: #3498db; color: #fff; }
+        .product-features { margin-top: 2rem; }
+        .feature-list { list-style: none; }
+        .feature-list li { padding: 0.8rem 0; border-bottom: 1px solid #ecf0f1; display: flex; align-items: center; gap: 0.5rem; }
+        .feature-list li::before { content: '✓'; color: #2ecc71; font-weight: bold; font-size: 1.2rem; }
+        .tabs { display: flex; gap: 1rem; border-bottom: 2px solid #ecf0f1; margin: 3rem 0 2rem; }
+        .tab { padding: 1rem 2rem; cursor: pointer; border-bottom: 3px solid transparent; transition: 0.3s; font-weight: bold; }
+        .tab:hover, .tab.active { border-bottom-color: #3498db; color: #3498db; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .specs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+        .spec-item { background: #ecf0f1; padding: 1rem; border-radius: 5px; }
+        .spec-label { font-weight: bold; color: #2c3e50; }
+        .reviews-grid { display: grid; gap: 1.5rem; }
+        .review-card { background: #fff; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #3498db; }
+        .review-header { display: flex; justify-content: space-between; margin-bottom: 1rem; }
+        .reviewer-name { font-weight: bold; color: #2c3e50; }
+        .review-date { color: #95a5a6; font-size: 0.9rem; }
+        .review-rating { color: #f39c12; margin-bottom: 0.5rem; }
+        .related-products { margin-top: 4rem; }
+        .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .related-card { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: 0.3s; cursor: pointer; }
+        .related-card:hover { transform: translateY(-5px); }
+        .related-img { width: 100%; height: 150px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; font-size: 3rem; }
+        .related-info { padding: 1rem; }
+        .related-price { color: #e74c3c; font-weight: bold; font-size: 1.2rem; }
+        h2 { font-size: 2rem; color: #2c3e50; margin-bottom: 1rem; }
+        .stock-status { display: inline-block; padding: 0.5rem 1rem; border-radius: 20px; font-weight: bold; margin: 1rem 0; }
+        .in-stock { background: #d5f4e6; color: #27ae60; }
+        .low-stock { background: #ffeaa7; color: #f39c12; }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div style="font-size: 1.5rem; font-weight: bold;">TechStore</div>
+        <div>
+            <a href="ecommerce.html">Home</a>
+            <a href="ecommerce.html#products">Products</a>
+            <a href="ecommerce-checkout.html">Cart (1)</a>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="ecommerce.html">Home</a> / <a href="ecommerce.html#products">Products</a> / <span>Ultra Laptop Pro</span>
+    </div>
+
+    <div class="section">
+        <div class="product-container">
+            <div class="product-gallery">
+                <div class="main-image" id="mainImage">💻</div>
+                <div class="thumbnail-grid">
+                    <div class="thumbnail active" onclick="changeImage('💻')">💻</div>
+                    <div class="thumbnail" onclick="changeImage('⌨️')">⌨️</div>
+                    <div class="thumbnail" onclick="changeImage('🖥️')">🖥️</div>
+                    <div class="thumbnail" onclick="changeImage('🔌')">🔌</div>
+                </div>
+            </div>
+
+            <div class="product-info">
+                <h1>Ultra Laptop Pro</h1>
+                <div class="rating">
+                    ★★★★★ <span style="color: #95a5a6;">(4.8 / 5) - 1,234 reviews</span>
+                </div>
+                <span class="stock-status in-stock">✓ In Stock</span>
+
+                <div class="price-section">
+                    <span class="price">$1,299</span>
+                    <span class="original-price">$1,599</span>
+                    <span class="discount-badge">Save 19%</span>
+                    <p style="margin-top: 1rem; color: #7f8c8d;">Free shipping on orders over $50</p>
+                </div>
+
+                <p style="line-height: 1.8; color: #7f8c8d; margin-bottom: 2rem;">
+                    Experience ultimate performance with the Ultra Laptop Pro. Featuring a stunning 15" 4K display, 
+                    powerful Intel Core i7 processor, 16GB RAM, and 512GB SSD. Perfect for professionals, creators, 
+                    and power users who demand the best.
+                </p>
+
+                <div class="product-options">
+                    <div class="option-group">
+                        <label>Storage:</label>
+                        <div class="option-buttons">
+                            <button class="option-btn selected" onclick="selectOption(this)">512GB SSD</button>
+                            <button class="option-btn" onclick="selectOption(this)">1TB SSD (+$200)</button>
+                            <button class="option-btn" onclick="selectOption(this)">2TB SSD (+$400)</button>
+                        </div>
+                    </div>
+
+                    <div class="option-group">
+                        <label>RAM:</label>
+                        <div class="option-buttons">
+                            <button class="option-btn selected" onclick="selectOption(this)">16GB</button>
+                            <button class="option-btn" onclick="selectOption(this)">32GB (+$150)</button>
+                            <button class="option-btn" onclick="selectOption(this)">64GB (+$350)</button>
+                        </div>
+                    </div>
+
+                    <div class="option-group">
+                        <label>Color:</label>
+                        <div class="option-buttons">
+                            <button class="option-btn selected" onclick="selectOption(this)">Space Gray</button>
+                            <button class="option-btn" onclick="selectOption(this)">Silver</button>
+                            <button class="option-btn" onclick="selectOption(this)">Midnight Blue</button>
+                        </div>
+                    </div>
+
+                    <div class="option-group">
+                        <label>Quantity:</label>
+                        <div class="quantity-selector">
+                            <button class="qty-btn" onclick="changeQty(-1)">-</button>
+                            <input type="number" class="qty-input" id="quantity" value="1" min="1" max="10" readonly>
+                            <button class="qty-btn" onclick="changeQty(1)">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+                    <button class="btn btn-secondary" onclick="addToWishlist()">♥ Wishlist</button>
+                </div>
+
+                <div class="product-features">
+                    <h3 style="color: #2c3e50; margin-bottom: 1rem;">Key Features:</h3>
+                    <ul class="feature-list">
+                        <li>15.6" 4K UHD Display (3840 x 2160)</li>
+                        <li>Intel Core i7-12700H Processor</li>
+                        <li>16GB DDR5 RAM</li>
+                        <li>512GB NVMe SSD</li>
+                        <li>NVIDIA GeForce RTX 3060 Graphics</li>
+                        <li>Thunderbolt 4 Ports</li>
+                        <li>Wi-Fi 6E & Bluetooth 5.2</li>
+                        <li>Backlit Keyboard</li>
+                        <li>Up to 12 Hours Battery Life</li>
+                        <li>2-Year Warranty</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('description')">Description</div>
+            <div class="tab" onclick="switchTab('specs')">Specifications</div>
+            <div class="tab" onclick="switchTab('reviews')">Reviews (1,234)</div>
+        </div>
+
+        <div class="tab-content active" id="description">
+            <h2>Product Description</h2>
+            <p style="line-height: 1.8; color: #7f8c8d;">
+                The Ultra Laptop Pro is engineered for professionals who demand exceptional performance. 
+                With its powerful Intel Core i7 processor and dedicated NVIDIA graphics, you can handle 
+                intensive tasks like video editing, 3D rendering, and gaming with ease.
+            </p>
+            <p style="line-height: 1.8; color: #7f8c8d; margin-top: 1rem;">
+                The stunning 4K display brings your content to life with vibrant colors and sharp details. 
+                Whether you're editing photos, watching movies, or creating presentations, every pixel is 
+                rendered with precision.
+            </p>
+        </div>
+
+        <div class="tab-content" id="specs">
+            <h2>Technical Specifications</h2>
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <div class="spec-label">Processor</div>
+                    <div>Intel Core i7-12700H (14-core, up to 4.7GHz)</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Graphics</div>
+                    <div>NVIDIA GeForce RTX 3060 6GB GDDR6</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Display</div>
+                    <div>15.6" 4K UHD (3840x2160) IPS, 400 nits</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Memory</div>
+                    <div>16GB DDR5-4800MHz (expandable to 64GB)</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Storage</div>
+                    <div>512GB PCIe NVMe M.2 SSD</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Battery</div>
+                    <div>90Wh, up to 12 hours</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Ports</div>
+                    <div>2x Thunderbolt 4, 3x USB-A 3.2, HDMI 2.1, SD Card</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Dimensions</div>
+                    <div>14.1" x 9.7" x 0.7" (358 x 246 x 18mm)</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Weight</div>
+                    <div>4.2 lbs (1.9 kg)</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Operating System</div>
+                    <div>Windows 11 Pro</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="reviews">
+            <h2>Customer Reviews</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="reviewer-name">John D.</span>
+                        <span class="review-date">March 5, 2026</span>
+                    </div>
+                    <div class="review-rating">★★★★★</div>
+                    <p style="color: #7f8c8d; line-height: 1.6;">
+                        Absolutely love this laptop! The 4K display is stunning and the performance is incredible. 
+                        I use it for video editing and it handles 4K footage without breaking a sweat. Highly recommended!
+                    </p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="reviewer-name">Sarah M.</span>
+                        <span class="review-date">March 3, 2026</span>
+                    </div>
+                    <div class="review-rating">★★★★★</div>
+                    <p style="color: #7f8c8d; line-height: 1.6;">
+                        Best laptop I've ever owned. The build quality is excellent, keyboard is comfortable for long 
+                        typing sessions, and the battery life is impressive. Worth every penny!
+                    </p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="reviewer-name">Mike T.</span>
+                        <span class="review-date">March 1, 2026</span>
+                    </div>
+                    <div class="review-rating">★★★★☆</div>
+                    <p style="color: #7f8c8d; line-height: 1.6;">
+                        Great laptop overall. Performance is top-notch and the display is beautiful. Only minor complaint 
+                        is that it can get a bit warm under heavy load, but that's expected with this level of performance.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="related-products">
+            <h2>You May Also Like</h2>
+            <div class="related-grid">
+                <div class="related-card" onclick="alert('View product details')">
+                    <div class="related-img">📱</div>
+                    <div class="related-info">
+                        <h4>SmartPhone X</h4>
+                        <div class="related-price">$899</div>
+                    </div>
+                </div>
+                <div class="related-card" onclick="alert('View product details')">
+                    <div class="related-img">🎧</div>
+                    <div class="related-info">
+                        <h4>Wireless Headphones</h4>
+                        <div class="related-price">$299</div>
+                    </div>
+                </div>
+                <div class="related-card" onclick="alert('View product details')">
+                    <div class="related-img">🖱️</div>
+                    <div class="related-info">
+                        <h4>Wireless Mouse Pro</h4>
+                        <div class="related-price">$79</div>
+                    </div>
+                </div>
+                <div class="related-card" onclick="alert('View product details')">
+                    <div class="related-img">⌨️</div>
+                    <div class="related-info">
+                        <h4>Mechanical Keyboard</h4>
+                        <div class="related-price">$149</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function changeImage(emoji) {
+            document.getElementById('mainImage').textContent = emoji;
+            document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function selectOption(btn) {
+            btn.parentElement.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+        }
+
+        function changeQty(delta) {
+            const input = document.getElementById('quantity');
+            let value = parseInt(input.value) + delta;
+            if (value >= 1 && value <= 10) {
+                input.value = value;
+            }
+        }
+
+        function addToCart() {
+            alert('Added to cart!\n\nProduct: Ultra Laptop Pro\nQuantity: ' + document.getElementById('quantity').value);
+            window.location.href = 'ecommerce-checkout.html';
+        }
+
+        function addToWishlist() {
+            alert('Added to wishlist! ♥');
+        }
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Gourmet Bistro</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #1a1a1a; color: #f5f5f5; }
+        .nav { background: rgba(0,0,0,0.95); color: #fff; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 20px rgba(212,165,116,0.3); }
+        .nav a { color: #d4a574; text-decoration: none; margin: 0 1rem; transition: 0.3s; font-weight: 500; }
+        .nav a:hover { color: #fff; transform: translateY(-2px); }
+        .hero-small { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%23d4a574" width="1200" height="400"/></svg>'); background-size: cover; padding: 5rem 2rem; text-align: center; }
+        .hero-small h1 { font-size: 3rem; color: #d4a574; margin-bottom: 0.5rem; }
+        .section { padding: 4rem 2rem; max-width: 1400px; margin: 0 auto; }
+        .menu-categories { display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
+        .category-btn { padding: 1rem 2rem; background: transparent; border: 2px solid #d4a574; color: #d4a574; cursor: pointer; border-radius: 50px; font-weight: bold; transition: 0.3s; font-size: 1rem; }
+        .category-btn:hover, .category-btn.active { background: #d4a574; color: #1a1a1a; transform: translateY(-3px); box-shadow: 0 5px 20px rgba(212,165,116,0.4); }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem; }
+        .menu-item { background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%); padding: 2rem; border-radius: 15px; border-left: 4px solid #d4a574; transition: 0.3s; position: relative; overflow: hidden; }
+        .menu-item::before { content: ''; position: absolute; top: 0; right: 0; width: 100px; height: 100px; background: radial-gradient(circle, rgba(212,165,116,0.1) 0%, transparent 70%); }
+        .menu-item:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(212,165,116,0.3); }
+        .menu-item-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem; }
+        .menu-item h3 { color: #d4a574; font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .price { font-size: 1.8rem; color: #d4a574; font-weight: bold; }
+        .menu-item p { color: #b3b3b3; line-height: 1.6; margin-bottom: 1rem; }
+        .dietary-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
+        .tag { padding: 0.3rem 0.8rem; background: rgba(212,165,116,0.2); border-radius: 15px; font-size: 0.8rem; color: #d4a574; border: 1px solid #d4a574; }
+        .add-to-order { background: #d4a574; color: #1a1a1a; padding: 0.8rem 1.5rem; border: none; border-radius: 25px; cursor: pointer; font-weight: bold; transition: 0.3s; width: 100%; margin-top: 1rem; }
+        .add-to-order:hover { background: #c49564; transform: scale(1.05); }
+        .cart-float { position: fixed; bottom: 30px; right: 30px; background: #d4a574; color: #1a1a1a; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; box-shadow: 0 5px 20px rgba(212,165,116,0.5); transition: 0.3s; z-index: 999; }
+        .cart-float:hover { transform: scale(1.1); }
+        .cart-count { position: absolute; top: -5px; right: -5px; background: #e74c3c; color: white; width: 25px; height: 25px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: bold; }
+        .rating { color: #ffd700; margin-top: 0.5rem; }
+        .chef-special { position: absolute; top: 10px; right: 10px; background: #e74c3c; color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: bold; }
+        h2 { text-align: center; font-size: 2.5rem; color: #d4a574; margin-bottom: 2rem; }
+        .filter-section { background: #2a2a2a; padding: 2rem; border-radius: 15px; margin-bottom: 2rem; }
+        .filter-options { display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center; }
+        .filter-options label { color: #d4a574; display: flex; align-items: center; gap: 0.5rem; cursor: pointer; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div style="font-size: 1.5rem; font-weight: bold; color: #d4a574;">Gourmet Bistro</div>
+        <div>
+            <a href="restaurant.html">Home</a>
+            <a href="restaurant-menu.html">Menu</a>
+            <a href="restaurant-gallery.html">Gallery</a>
+            <a href="restaurant.html#reservation">Reservations</a>
+        </div>
+    </nav>
+
+    <div class="hero-small">
+        <h1>Our Exquisite Menu</h1>
+        <p style="font-size: 1.2rem; color: #f5f5f5;">Crafted with passion, served with excellence</p>
+    </div>
+
+    <div class="section">
+        <div class="filter-section">
+            <h3 style="color: #d4a574; text-align: center; margin-bottom: 1rem;">Dietary Preferences</h3>
+            <div class="filter-options">
+                <label><input type="checkbox" id="filter-veg"> Vegetarian</label>
+                <label><input type="checkbox" id="filter-vegan"> Vegan</label>
+                <label><input type="checkbox" id="filter-gf"> Gluten-Free</label>
+                <label><input type="checkbox" id="filter-spicy"> Spicy</label>
+            </div>
+        </div>
+
+        <div class="menu-categories">
+            <button class="category-btn active" data-category="all">All Items</button>
+            <button class="category-btn" data-category="appetizers">Appetizers</button>
+            <button class="category-btn" data-category="mains">Main Courses</button>
+            <button class="category-btn" data-category="seafood">Seafood</button>
+            <button class="category-btn" data-category="desserts">Desserts</button>
+            <button class="category-btn" data-category="drinks">Beverages</button>
+        </div>
+
+        <div class="menu-grid" id="menuGrid">
+            <!-- Appetizers -->
+            <div class="menu-item" data-category="appetizers" data-tags="veg">
+                <div class="chef-special">Chef's Special</div>
+                <div class="menu-item-header">
+                    <div>
+                        <h3>Truffle Mushroom Bruschetta</h3>
+                        <div class="rating">★★★★★ (4.9)</div>
+                    </div>
+                    <div class="price">$16</div>
+                </div>
+                <p>Artisan bread topped with sautéed wild mushrooms, truffle oil, and aged parmesan</p>
+                <div class="dietary-tags">
+                    <span class="tag">Vegetarian</span>
+                    <span class="tag">Popular</span>
+                </div>
+                <button class="add-to-order" onclick="addToCart('Truffle Mushroom Bruschetta', 16)">Add to Order</button>
+            </div>
+
+            <div class="menu-item" data-category="appetizers" data-tags="gf">
+                <div class="menu-item-header">
+                    <div>
+                        <h3>Seared Scallops</h3>
+                        <div class="rating">★★★★★ (4.8)</div>
+                    </div>
+                    <div class="price">$22</div>
+                </div>
+                <p>Pan-seared scallops with cauliflower purée, crispy pancetta, and microgreens</p>
+                <div class="dietary-tags">
+                    <span class="tag">Gluten-Free</span>
+                    <span class="tag">Premium</span>
+                </div>
+                <button class="add-to-order" onclick="addToCart('Seared Scallops', 22)">Add to Order</button>
+            </div>
+
+            <div class="menu-item" data-category="appetizers" data-tags="vegan">
+                <div class="menu-item-header">
+                    <div>
+                        <h3>Mediterranean Mezze Platter</h3>
+                        <div class="rating">★★★★☆ (4.6)</div>
+                    </div>
+                    <div class="price">$18</div>
+                </div>
+                <p>Hummus, baba ganoush, falafel, olives, and warm pita bread</p>
+                <div class="dietary-tags">
+                    <span class="tag">Vegan</span>
+                    <span class="tag">Vegetarian</span>
+                </div>
+                <button class="add-to-order" onclick="addToCart('Mediterranean Mezze Platter', 18)">Add to Order</button>
+            </div>
+
+            <!-- Main Courses -->
+            <div class="menu-item" data-category="mains" data-tags="">
+                <div class="chef-special">Chef's Special</div>
+                <div class="menu-item-header">
+                    <div>
+                        <h3>Wagyu Beef Tenderloin</h3>
+                        <div class="rating">★★★★★ (5.0)</div>
+                    </div>
+                    <div class="price">$58</div>
+                </div>
+                <p>8oz premium Wagyu beef with red wine reduction, truffle mashed potatoes, and seasonal vegetables</p>
+                <div class="dietary-tags">
+                    <span class="tag">Premium</span>
+                    <span class="tag">Signature</span>
+                </div>
+                <button class="add-to-order" onclick="addToCart('Wagyu Beef Tenderloin', 58)">Add to Order</button>
+            </div>
+
+            <div class="menu-item" data-category="mains" data-tags="gf">
+                <div class="menu-item-header">
+                    <div>
+                        <h3>Herb-Crusted Rack of Lamb</h3>
+                        <div class="rating">★★★★★ (4.9)</div>
+                    </div>
+                    <div class="price">$48</div>
+                </div>
+                <p>New Zealand lamb with rosemary crust, mint jus, roasted fingerling potatoes</p>
+                <div class="dietary-tags">
+                    <span class="tag">Gluten-Free</span>
+                    <span class="tag">Popular</span>
+                </div>
+                <button class="add-to-order" onclick="addToCart('Herb-Crusted Rack of Lamb', 48)">Add to Order</button>
+            </div>
+
+            <div class="menu-item" data-category="mains" data-tags="veg">
+                <div class="menu-item-header">
+                    <div>
+                        <h3>Wild Mushroom Risotto</h3>
+                        <div class="rating">★★★★★ (4.7)</div>
+                    </div>
+                    <div class="price">$32</div>
+                </div>
+                <p>Creamy arborio rice with porcini, shiitake, and oyster mushrooms, finished with truffle oil</p>
+                <div class="dietary-tags">
+                    <span class="tag">Vegetarian</span>
+                    <span class="tag">Gluten-Free</span>
+                </div>
+                <button class="add-to-order" onclick="addToCart('Wild Mushroom Risotto', 32)">Add to Order</button>
+            </div>
+
+            <!-- Seafood -->
+            <div class="menu-item" data-category="seafood" data-tags="gf">
+                <div class="chef-special">Chef's Special</div>
+                <div class="menu-item-header">
+                    <div>
+                        <h3>Pan-Seared Chilean Sea Bass</h3>
+                        <div class="rating">★★★★★ (4.9)</div>
+                    </div>
+                    <div class="price">$52</div>
+                </div>
+                <p>Perfectly seared sea bass with lemon beurre blanc, asparagus, and saffron rice</p>
+                <div class="dietary-tags">
+                    <span class="tag">Gluten-Free</span>
+                    <span class="tag">Premium</span>
+                </div>
+                <button class="add-to-order" onclick="addToCart('Pan-Seared Chilean Sea Bass', 52)">Add to Order</button>
+            </div>
+
+            <div class="menu-item" data-category="seafood" data-tags="">
+                <div class="menu-item-header">
+                    <div>
+                        <h3>Lobster Thermidor</h3>
+                        <div class="rating">★★★★★ (4.8)</div>
+                    </div>
+                    <div class="price">$65</div>
+                </div>
+                <p>Whole Maine lobster with brandy cream sauce, gruyere cheese, served with garlic butter</p>
+                <div class="dietary-tags">
+                    <span class="tag">Premium</span>
+                    <span class="tag">Signature</span>
+                </div>
+                <button class="add-to-order" onclick="addToCart('Lobster Thermidor', 65)">Add to Order</button>
+            </div>
+
+            <div class="menu-item" data-category="seafood" data-tags="spicy">
+                <div class="menu-item-header">
+                    <div>
+                        <h3>Spicy Tuna Tataki</h3>
+                        <div class="rating">★★★★☆ (4.6)</div>
+                    </div>
+                    <div class="price">$38</div>
+                </div>
+                <p>Seared tuna with ponzu sauce, jalapeño, and crispy shallots</p>
+                <div class="dietary-tags">
+                    <span class="tag">Spicy</span>
+                    <span class="tag">Gluten-Free</span>
+                </div>
+                <button class="add-to-order" onclick="addToCart('Spicy Tuna Tataki', 38)">Add to Order</button>
+            </div>
+
+            <!-- Desserts -->
+            <div class="menu-item" data-category="desserts" data-tags="veg">
+                <div class="menu-item-header">
+                    <div>
+                        <h3>Chocolate Lava Cake</h3>
+                        <div class="rating">★★★★★ (5.0)</div>
+                    </div>
+                    <div class="price">$14</div>
+                </div>
+                <p>Warm chocolate cake with molten center, vanilla ice cream, and raspberry coulis</p>
+                <div class="dietary-tags">
+                    <span class="tag">Vegetarian</span>
+                    <span class="tag">Popular</span>
+                </div>
+                <button class="add-to-order" onclick="addToCart('Chocolate Lava Cake', 14)">Add to Order</button>
+            </div>
+
+            <div class="menu-item" data-category="desserts" data-tags="veg gf">
+                <div class="menu-item-header">
+                    <div>
+                        <h3>Crème Brûlée</h3>
+                        <div class="rating">★★★★★ (4.9)</div>
+                    </div>
+                    <div class="price">$12</div>
+                </div>
+                <p>Classic French custard with caramelized sugar crust and fresh berries</p>
+                <div class="dietary-tags">
+                    <span class="tag">Vegetarian</span>
+                    <span class="tag">Gluten-Free</span>
+                </div>
+                <button class="add-to-order" onclick="addToCart('Crème Brûlée', 12)">Add to Order</button>
+            </div>
+
+            <div class="menu-item" data-category="desserts" data-tags="vegan">
+                <div class="menu-item-header">
+                    <div>
+                        <h3>Vegan Tiramisu</h3>
+                        <div class="rating">★★★★☆ (4.7)</div>
+                    </div>
+                    <div class="price">$13</div>
+                </div>
+                <p>Plant-based mascarpone, espresso-soaked ladyfingers, cocoa powder</p>
+                <div class="dietary-tags">
+                    <span class="tag">Vegan</span>
+                    <span class="tag">Vegetarian</span>
+                </div>
+                <button class="add-to-order" onclick="addToCart('Vegan Tiramisu', 13)">Add to Order</button>
+            </div>
+
+            <!-- Beverages -->
+            <div class="menu-item" data-category="drinks" data-tags="">
+                <div class="menu-item-header">
+                    <div>
+                        <h3>Sommelier's Wine Selection</h3>
+                        <div class="rating">★★★★★ (4.8)</div>
+                    </div>
+                    <div class="price">$18</div>
+                </div>
+                <p>Curated glass of red or white wine paired with your meal</p>
+                <div class="dietary-tags">
+                    <span class="tag">Premium</span>
+                </div>
+                <button class="add-to-order" onclick="addToCart('Wine Selection', 18)">Add to Order</button>
+            </div>
+
+            <div class="menu-item" data-category="drinks" data-tags="vegan">
+                <div class="menu-item-header">
+                    <div>
+                        <h3>Artisan Mocktails</h3>
+                        <div class="rating">★★★★☆ (4.6)</div>
+                    </div>
+                    <div class="price">$10</div>
+                </div>
+                <p>Fresh fruit mocktails: Passion Fruit Fizz, Berry Bliss, or Cucumber Mint</p>
+                <div class="dietary-tags">
+                    <span class="tag">Vegan</span>
+                    <span class="tag">Non-Alcoholic</span>
+                </div>
+                <button class="add-to-order" onclick="addToCart('Artisan Mocktail', 10)">Add to Order</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="cart-float" onclick="viewCart()">
+        🛒
+        <span class="cart-count" id="cartCount">0</span>
+    </div>
+
+    <script>
+        let cart = [];
+        let cartTotal = 0;
+
+        // Category filtering
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const category = btn.dataset.category;
+                document.querySelectorAll('.menu-item').forEach(item => {
+                    if (category === 'all' || item.dataset.category === category) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Dietary filters
+        document.querySelectorAll('[id^="filter-"]').forEach(checkbox => {
+            checkbox.addEventListener('change', applyFilters);
+        });
+
+        function applyFilters() {
+            const filters = {
+                veg: document.getElementById('filter-veg').checked,
+                vegan: document.getElementById('filter-vegan').checked,
+                gf: document.getElementById('filter-gf').checked,
+                spicy: document.getElementById('filter-spicy').checked
+            };
+
+            const activeFilters = Object.keys(filters).filter(key => filters[key]);
+
+            document.querySelectorAll('.menu-item').forEach(item => {
+                if (activeFilters.length === 0) {
+                    item.style.display = 'block';
+                } else {
+                    const itemTags = item.dataset.tags.split(' ');
+                    const matches = activeFilters.some(filter => itemTags.includes(filter));
+                    item.style.display = matches ? 'block' : 'none';
+                }
+            });
+        }
+
+        function addToCart(itemName, price) {
+            cart.push({ name: itemName, price: price });
+            cartTotal += price;
+            updateCartCount();
+            
+            // Visual feedback
+            const btn = event.target;
+            const originalText = btn.textContent;
+            btn.textContent = '✓ Added!';
+            btn.style.background = '#2ecc71';
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.background = '#d4a574';
+            }, 1000);
+        }
+
+        function updateCartCount() {
+            document.getElementById('cartCount').textContent = cart.length;
+        }
+
+        function viewCart() {
+            if (cart.length === 0) {
+                alert('Your cart is empty. Add some delicious items!');
+                return;
+            }
+            
+            let cartSummary = 'Your Order:\n\n';
+            cart.forEach((item, index) => {
+                cartSummary += `${index + 1}. ${item.name} - $${item.price}\n`;
+            });
+            cartSummary += `\nTotal: $${cartTotal}\n\nProceed to checkout?`;
+            
+            if (confirm(cartSummary)) {
+                alert('Redirecting to checkout... (Demo)');
+            }
+        }
+    </script>
+</body>
+</html>

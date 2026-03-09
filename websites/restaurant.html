@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gourmet Bistro - Fine Dining</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #1a1a1a; color: #f5f5f5; }
+        .header { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23d4a574" width="1200" height="600"/></svg>'); background-size: cover; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        .header h1 { font-size: 4rem; color: #d4a574; margin-bottom: 1rem; }
+        .header p { font-size: 1.5rem; color: #f5f5f5; }
+        .nav { position: fixed; top: 0; width: 100%; background: rgba(0,0,0,0.9); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; z-index: 1000; }
+        .nav a { color: #d4a574; text-decoration: none; margin: 0 1rem; transition: 0.3s; }
+        .nav a:hover { color: #fff; }
+        .section { padding: 5rem 2rem; max-width: 1200px; margin: 0 auto; }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem; }
+        .menu-item { background: #2a2a2a; padding: 2rem; border-radius: 10px; border-left: 4px solid #d4a574; }
+        .menu-item h3 { color: #d4a574; margin-bottom: 0.5rem; }
+        .price { color: #d4a574; font-weight: bold; font-size: 1.2rem; margin-top: 1rem; }
+        .reservation { background: #2a2a2a; padding: 2rem; border-radius: 10px; max-width: 500px; margin: 2rem auto; }
+        .reservation input, .reservation select { width: 100%; padding: 1rem; margin: 0.5rem 0; background: #1a1a1a; border: 1px solid #d4a574; color: #f5f5f5; border-radius: 5px; }
+        .btn { background: #d4a574; color: #1a1a1a; padding: 1rem 2rem; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%; }
+        .btn:hover { background: #c49564; }
+        h2 { text-align: center; font-size: 2.5rem; color: #d4a574; margin-bottom: 2rem; }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div style="font-size: 1.5rem; font-weight: bold; color: #d4a574;">Gourmet Bistro</div>
+        <div>
+            <a href="#menu">Menu</a>
+            <a href="restaurant-menu.html">Full Menu</a>
+            <a href="restaurant-gallery.html">Gallery</a>
+            <a href="#about">About</a>
+            <a href="#reservation">Reservations</a>
+        </div>
+    </nav>
+
+    <div class="header">
+        <h1>Gourmet Bistro</h1>
+        <p>Experience Fine Dining at Its Best</p>
+    </div>
+
+    <div id="menu" class="section">
+        <h2>Our Menu</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <h3>Grilled Salmon</h3>
+                <p>Fresh Atlantic salmon with lemon butter sauce, served with seasonal vegetables</p>
+                <div class="price">$32</div>
+            </div>
+            <div class="menu-item">
+                <h3>Filet Mignon</h3>
+                <p>8oz premium beef tenderloin with red wine reduction and truffle mashed potatoes</p>
+                <div class="price">$45</div>
+            </div>
+            <div class="menu-item">
+                <h3>Lobster Risotto</h3>
+                <p>Creamy arborio rice with fresh lobster, parmesan, and white wine</p>
+                <div class="price">$38</div>
+            </div>
+            <div class="menu-item">
+                <h3>Vegetarian Pasta</h3>
+                <p>Handmade pasta with roasted vegetables, olive oil, and fresh herbs</p>
+                <div class="price">$28</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="about" class="section" style="background: #2a2a2a;">
+        <h2>About Us</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto; line-height: 1.8;">
+            Gourmet Bistro has been serving exquisite cuisine for over 20 years. Our chef-driven menu features locally sourced ingredients and innovative culinary techniques. We pride ourselves on creating memorable dining experiences in an elegant atmosphere.
+        </p>
+    </div>
+
+    <div id="reservation" class="section">
+        <h2>Make a Reservation</h2>
+        <form class="reservation" onsubmit="event.preventDefault(); alert('Reservation confirmed! We look forward to serving you.');">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Email" required>
+            <input type="tel" placeholder="Phone Number" required>
+            <input type="date" required>
+            <select required>
+                <option value="">Select Time</option>
+                <option>5:00 PM</option>
+                <option>6:00 PM</option>
+                <option>7:00 PM</option>
+                <option>8:00 PM</option>
+            </select>
+            <select required>
+                <option value="">Number of Guests</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5+</option>
+            </select>
+            <button type="submit" class="btn">Reserve Table</button>
+        </form>
+    </div>
+</body>
+</html>

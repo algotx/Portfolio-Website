@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechBlog - Latest in Technology</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #fafafa; color: #333; }
+        .nav { background: #fff; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+        .nav a { color: #333; text-decoration: none; margin: 0 1rem; font-weight: 500; }
+        .hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; padding: 5rem 2rem; text-align: center; }
+        .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .section { padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; }
+        .posts { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
+        .post-card { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: 0.3s; }
+        .post-card:hover { transform: translateY(-5px); box-shadow: 0 5px 20px rgba(0,0,0,0.15); }
+        .post-img { width: 100%; height: 200px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: #fff; }
+        .post-content { padding: 2rem; }
+        .post-meta { display: flex; gap: 1rem; color: #999; font-size: 0.9rem; margin-bottom: 1rem; }
+        .post-content h3 { color: #333; margin-bottom: 1rem; font-size: 1.5rem; }
+        .post-content p { color: #666; line-height: 1.6; margin-bottom: 1rem; }
+        .read-more { color: #667eea; text-decoration: none; font-weight: bold; }
+        .read-more:hover { text-decoration: underline; }
+        .sidebar { background: #fff; padding: 2rem; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .sidebar h3 { margin-bottom: 1rem; color: #667eea; }
+        .category-tag { display: inline-block; background: #f0f0f0; padding: 0.5rem 1rem; border-radius: 20px; margin: 0.3rem; font-size: 0.9rem; cursor: pointer; }
+        .category-tag:hover { background: #667eea; color: #fff; }
+        h2 { text-align: center; font-size: 2.5rem; color: #333; margin-bottom: 2rem; }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div style="font-size: 1.5rem; font-weight: bold; color: #667eea;">📝 TechBlog</div>
+        <div>
+            <a href="#posts">Posts</a>
+            <a href="#categories">Categories</a>
+            <a href="#about">About</a>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1>Latest in Technology</h1>
+        <p style="font-size: 1.3rem;">Insights, tutorials, and news from the tech world</p>
+    </div>
+
+    <div id="posts" class="section">
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 3rem;">
+            <div>
+                <h2 style="text-align: left;">Recent Posts</h2>
+                <div class="posts" style="grid-template-columns: 1fr;">
+                    <div class="post-card">
+                        <div class="post-img">💻</div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span>📅 March 5, 2026</span>
+                                <span>👤 John Doe</span>
+                                <span>💬 24 Comments</span>
+                            </div>
+                            <h3>Getting Started with React 19</h3>
+                            <p>React 19 brings exciting new features including improved server components, better performance, and enhanced developer experience. In this comprehensive guide, we'll explore everything you need to know...</p>
+                            <a href="#" class="read-more" onclick="alert('Opening full article...'); return false;">Read More →</a>
+                        </div>
+                    </div>
+                    <div class="post-card">
+                        <div class="post-img">🤖</div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span>📅 March 3, 2026</span>
+                                <span>👤 Jane Smith</span>
+                                <span>💬 18 Comments</span>
+                            </div>
+                            <h3>AI and Machine Learning in 2026</h3>
+                            <p>Artificial Intelligence continues to revolutionize industries. From healthcare to finance, AI is transforming how we work and live. Let's dive into the latest trends and applications...</p>
+                            <a href="#" class="read-more" onclick="alert('Opening full article...'); return false;">Read More →</a>
+                        </div>
+                    </div>
+                    <div class="post-card">
+                        <div class="post-img">🔒</div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span>📅 March 1, 2026</span>
+                                <span>👤 Mike Johnson</span>
+                                <span>💬 32 Comments</span>
+                            </div>
+                            <h3>Cybersecurity Best Practices</h3>
+                            <p>Protecting your digital assets has never been more important. Learn essential security practices every developer should implement to keep applications and data safe from threats...</p>
+                            <a href="#" class="read-more" onclick="alert('Opening full article...'); return false;">Read More →</a>
+                        </div>
+                    </div>
+                    <div class="post-card">
+                        <div class="post-img">☁️</div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span>📅 Feb 28, 2026</span>
+                                <span>👤 Sarah Lee</span>
+                                <span>💬 15 Comments</span>
+                            </div>
+                            <h3>Cloud Computing Trends</h3>
+                            <p>The cloud landscape is evolving rapidly. Discover the latest trends in serverless architecture, edge computing, and multi-cloud strategies that are shaping the future...</p>
+                            <a href="#" class="read-more" onclick="alert('Opening full article...'); return false;">Read More →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="sidebar">
+                    <h3>Search</h3>
+                    <input type="text" placeholder="Search posts..." style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 2rem;">
+                    
+                    <h3 id="categories">Categories</h3>
+                    <div style="margin-bottom: 2rem;">
+                        <div class="category-tag">Web Development</div>
+                        <div class="category-tag">AI & ML</div>
+                        <div class="category-tag">Cybersecurity</div>
+                        <div class="category-tag">Cloud Computing</div>
+                        <div class="category-tag">Mobile Dev</div>
+                        <div class="category-tag">DevOps</div>
+                    </div>
+                    
+                    <h3>Popular Posts</h3>
+                    <div>
+                        <div style="padding: 1rem 0; border-bottom: 1px solid #f0f0f0;">
+                            <a href="#" style="color: #333; text-decoration: none;">Building Scalable APIs</a>
+                            <div style="color: #999; font-size: 0.9rem; margin-top: 0.3rem;">1.2k views</div>
+                        </div>
+                        <div style="padding: 1rem 0; border-bottom: 1px solid #f0f0f0;">
+                            <a href="#" style="color: #333; text-decoration: none;">Docker for Beginners</a>
+                            <div style="color: #999; font-size: 0.9rem; margin-top: 0.3rem;">980 views</div>
+                        </div>
+                        <div style="padding: 1rem 0;">
+                            <a href="#" style="color: #333; text-decoration: none;">JavaScript ES2026 Features</a>
+                            <div style="color: #999; font-size: 0.9rem; margin-top: 0.3rem;">850 views</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar" style="margin-top: 2rem;">
+                    <h3>Newsletter</h3>
+                    <p style="color: #666; margin-bottom: 1rem;">Get the latest posts delivered to your inbox</p>
+                    <input type="email" placeholder="Your email" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 1rem;">
+                    <button style="width: 100%; padding: 0.8rem; background: #667eea; color: #fff; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">Subscribe</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="about" class="section" style="background: #fff; text-align: center;">
+        <h2>About TechBlog</h2>
+        <p style="max-width: 800px; margin: 0 auto; line-height: 1.8; color: #666;">
+            TechBlog is your go-to source for the latest technology news, tutorials, and insights. Our team of experienced developers and tech enthusiasts share their knowledge to help you stay ahead in the fast-paced world of technology.
+        </p>
+    </div>
+</body>
+</html>

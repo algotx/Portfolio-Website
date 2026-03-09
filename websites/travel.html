@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wanderlust Travel - Explore the World</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; background: #fff; color: #333; }
+        .nav { background: rgba(0,0,0,0.9); color: #fff; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: fixed; width: 100%; z-index: 1000; }
+        .nav a { color: #fff; text-decoration: none; margin: 0 1rem; }
+        .hero { background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%2300bcd4" width="1200" height="600"/></svg>'); height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff; background-size: cover; }
+        .hero h1 { font-size: 4rem; margin-bottom: 1rem; }
+        .section { padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; }
+        .destinations { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .destination-card { background: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: 0.3s; }
+        .destination-card:hover { transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .destination-img { width: 100%; height: 250px; background: linear-gradient(135deg, #00bcd4 0%, #2196f3 100%); display: flex; align-items: center; justify-content: center; font-size: 5rem; }
+        .destination-info { padding: 1.5rem; }
+        .destination-info h3 { color: #00bcd4; margin-bottom: 0.5rem; font-size: 1.5rem; }
+        .price { font-size: 1.8rem; color: #ff5722; font-weight: bold; margin: 1rem 0; }
+        .btn { background: #00bcd4; color: #fff; padding: 0.8rem 1.5rem; border: none; border-radius: 25px; cursor: pointer; width: 100%; font-weight: bold; }
+        .btn:hover { background: #0097a7; }
+        h2 { text-align: center; font-size: 2.5rem; color: #00bcd4; margin-bottom: 2rem; }
+        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; text-align: center; }
+        .feature-icon { font-size: 3rem; margin-bottom: 1rem; }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div style="font-size: 1.5rem; font-weight: bold;">✈️ Wanderlust</div>
+        <div>
+            <a href="#destinations">Destinations</a>
+            <a href="#packages">Packages</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div>
+            <h1>Explore the World</h1>
+            <p style="font-size: 1.5rem; margin-bottom: 2rem;">Discover amazing destinations and create unforgettable memories</p>
+            <button class="btn" style="max-width: 200px; padding: 1rem 2rem;" onclick="document.getElementById('destinations').scrollIntoView({behavior: 'smooth'})">Start Exploring</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="features">
+            <div>
+                <div class="feature-icon">🌍</div>
+                <h3>200+ Destinations</h3>
+                <p>Explore the world</p>
+            </div>
+            <div>
+                <div class="feature-icon">💰</div>
+                <h3>Best Prices</h3>
+                <p>Guaranteed lowest rates</p>
+            </div>
+            <div>
+                <div class="feature-icon">🏨</div>
+                <h3>Top Hotels</h3>
+                <p>Luxury accommodations</p>
+            </div>
+            <div>
+                <div class="feature-icon">🎫</div>
+                <h3>Easy Booking</h3>
+                <p>Simple reservation process</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="destinations" class="section" style="background: #f5f5f5;">
+        <h2>Popular Destinations</h2>
+        <div class="destinations">
+            <div class="destination-card">
+                <div class="destination-img">🗼</div>
+                <div class="destination-info">
+                    <h3>Paris, France</h3>
+                    <p>The City of Light awaits with iconic landmarks, world-class museums, and exquisite cuisine</p>
+                    <div style="margin: 1rem 0; color: #666;">
+                        <span>✈️ 7 Days</span> | <span>🏨 4-Star Hotel</span>
+                    </div>
+                    <div class="price">$1,899</div>
+                    <button class="btn" onclick="alert('Booking Paris package...')">Book Now</button>
+                </div>
+            </div>
+            <div class="destination-card">
+                <div class="destination-img">🏝️</div>
+                <div class="destination-info">
+                    <h3>Maldives</h3>
+                    <p>Paradise on Earth with crystal-clear waters, white sand beaches, and luxury resorts</p>
+                    <div style="margin: 1rem 0; color: #666;">
+                        <span>✈️ 5 Days</span> | <span>🏨 5-Star Resort</span>
+                    </div>
+                    <div class="price">$2,499</div>
+                    <button class="btn" onclick="alert('Booking Maldives package...')">Book Now</button>
+                </div>
+            </div>
+            <div class="destination-card">
+                <div class="destination-img">🗾</div>
+                <div class="destination-info">
+                    <h3>Tokyo, Japan</h3>
+                    <p>Experience the perfect blend of ancient tradition and cutting-edge technology</p>
+                    <div style="margin: 1rem 0; color: #666;">
+                        <span>✈️ 6 Days</span> | <span>🏨 4-Star Hotel</span>
+                    </div>
+                    <div class="price">$2,199</div>
+                    <button class="btn" onclick="alert('Booking Tokyo package...')">Book Now</button>
+                </div>
+            </div>
+            <div class="destination-card">
+                <div class="destination-img">🏛️</div>
+                <div class="destination-info">
+                    <h3>Rome, Italy</h3>
+                    <p>Walk through history in the Eternal City with ancient ruins and Renaissance art</p>
+                    <div style="margin: 1rem 0; color: #666;">
+                        <span>✈️ 5 Days</span> | <span>🏨 4-Star Hotel</span>
+                    </div>
+                    <div class="price">$1,699</div>
+                    <button class="btn" onclick="alert('Booking Rome package...')">Book Now</button>
+                </div>
+            </div>
+            <div class="destination-card">
+                <div class="destination-img">🏔️</div>
+                <div class="destination-info">
+                    <h3>Swiss Alps</h3>
+                    <p>Breathtaking mountain scenery, charming villages, and world-class skiing</p>
+                    <div style="margin: 1rem 0; color: #666;">
+                        <span>✈️ 7 Days</span> | <span>🏨 Mountain Lodge</span>
+                    </div>
+                    <div class="price">$2,299</div>
+                    <button class="btn" onclick="alert('Booking Swiss Alps package...')">Book Now</button>
+                </div>
+            </div>
+            <div class="destination-card">
+                <div class="destination-img">🌴</div>
+                <div class="destination-info">
+                    <h3>Bali, Indonesia</h3>
+                    <p>Tropical paradise with stunning beaches, rice terraces, and spiritual temples</p>
+                    <div style="margin: 1rem 0; color: #666;">
+                        <span>✈️ 8 Days</span> | <span>🏨 Beach Resort</span>
+                    </div>
+                    <div class="price">$1,599</div>
+                    <button class="btn" onclick="alert('Booking Bali package...')">Book Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="packages" class="section">
+        <h2>Why Book With Us?</h2>
+        <div style="max-width: 800px; margin: 2rem auto; text-align: center; line-height: 1.8;">
+            <p style="font-size: 1.1rem;">We offer comprehensive travel packages including flights, accommodations, tours, and 24/7 customer support. Our experienced travel consultants ensure every detail of your trip is perfect. Book with confidence knowing you're getting the best value and service.</p>
+        </div>
+    </div>
+</body>
+</html>

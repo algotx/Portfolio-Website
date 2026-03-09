@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlgoTX - Ukasha Ahmed | Full-Stack Developer Portfolio</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Ukasha Ahmed - Aspiring software developer specializing in full-stack development with Java, JavaScript, Spring Boot, React, and MySQL. View my portfolio and projects.">
+    <meta name="keywords" content="Ukasha Ahmed, AlgoTX, Full-Stack Developer, Java, JavaScript, Spring Boot, React, MySQL, Software Engineer, Web Developer, Portfolio">
+    <meta name="author" content="Ukasha Ahmed">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="AlgoTX - Ukasha Ahmed Portfolio">
+    <meta property="og:description" content="Full-stack developer portfolio showcasing projects in Java, JavaScript, Spring Boot, and React">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://algotx.com">
+    <meta property="og:image" content="https://algotx.com/assets/og-image.jpg">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AlgoTX - Ukasha Ahmed Portfolio">
+    <meta name="twitter:description" content="Full-stack developer portfolio showcasing projects in Java, JavaScript, Spring Boot, and React">
+    <meta name="twitter:image" content="https://algotx.com/assets/twitter-card.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://algotx.com">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6366f1">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">AlgoTX</div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#websites">Websites</a></li>
+                <li><a href="games.html">Games</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <canvas id="particles"></canvas>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Ukasha Ahmed</h1>
+                <p class="subtitle">Aspiring Software Engineer | Full-Stack Engineer</p>
+                <div class="typing-text">
+                    <span id="typed-text"></span><span class="cursor">|</span>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#about" class="btn btn-primary">Learn More</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse"></div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title-large">About Me</h2>
+            <div class="about-content">
+                <div class="about-card">
+                    <div class="profile-header">
+                        <div class="profile-icon">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <h3>Ukasha Ahmed</h3>
+                        <div class="contact-info">
+                            <p><i class="fas fa-envelope"></i> ukasha@algotx.dev</p>
+                            <p><i class="fas fa-phone"></i> 571-567-7096</p>
+                            <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/ukasha-ahmed" target="_blank">linkedin.com/in/ukasha-ahmed</a></p>
+                        </div>
+                    </div>
+
+                    <div class="about-section">
+                        <h4><i class="fas fa-briefcase"></i> Professional Summary</h4>
+                        <p>Aspiring software engineer with hands-on experience building full-stack applications using Java, JavaScript, Spring Boot, React, and MySQL. Experienced in designing backend APIs, developing responsive UIs, and applying strong data structures and algorithms fundamentals. Seeking software engineering internships or junior-level roles.</p>
+                    </div>
+
+                    <div class="about-section">
+                        <h4><i class="fas fa-code"></i> Technical Skills</h4>
+                        <div class="skills-grid">
+                            <div class="skill-category">
+                                <h5>Languages</h5>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Java</span>
+                                    <span class="skill-tag">JavaScript</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h5>Backend</h5>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Spring Boot</span>
+                                    <span class="skill-tag">REST APIs</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h5>Frontend</h5>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">React</span>
+                                    <span class="skill-tag">HTML</span>
+                                    <span class="skill-tag">CSS</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h5>Databases</h5>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">MySQL</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h5>Tools</h5>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">IntelliJ IDEA</span>
+                                    <span class="skill-tag">VS Code</span>
+                                    <span class="skill-tag">Maven</span>
+                                    <span class="skill-tag">Postman</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-section">
+                        <h4><i class="fas fa-brain"></i> Problem Solving & Algorithms</h4>
+                        <ul class="achievements-list">
+                            <li>Solved 50+ problems from the LeetCode Top 150</li>
+                            <li>Strong understanding of arrays, hash maps, stacks, queues, recursion, and basic dynamic programming</li>
+                            <li>Focused on efficient and readable Java solutions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Project Experience</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Chat Application</h3>
+                    <p class="tech-stack">Spring Boot, React, MySQL</p>
+                    <ul class="project-details">
+                        <li>Built a full-stack chat application with backend APIs for messaging and user management</li>
+                        <li>Developed React-based UI for conversations and message views</li>
+                        <li>Integrated frontend and backend services using REST APIs</li>
+                    </ul>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <h3>Utility Bill Analyzer</h3>
+                    <p class="tech-stack">Spring Boot, React, Python</p>
+                    <ul class="project-details">
+                        <li>Created a full-stack application to help users understand and reduce utility bills</li>
+                        <li>Implemented backend REST APIs and frontend UI components</li>
+                        <li>Integrated analysis logic with user-facing dashboards</li>
+                    </ul>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon">
+                        <i class="fas fa-bicycle"></i>
+                    </div>
+                    <h3>Safe Ride</h3>
+                    <p class="tech-stack">Spring Boot, React, Python</p>
+                    <ul class="project-details">
+                        <li>Developed a safety-focused application for bike riding</li>
+                        <li>Built backend APIs and frontend UI components</li>
+                        <li>Designed modular application components for scalability</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="websites" class="websites">
+        <div class="container">
+            <h2 class="section-title">Website Showcase</h2>
+            <p class="section-subtitle">Explore 10 fully functional websites across different niches</p>
+            <div class="websites-grid">
+                <div class="website-card" data-website="restaurant">
+                    <div class="website-preview">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Restaurant</h3>
+                    <p>Modern restaurant website with menu and reservations</p>
+                    <a href="websites/restaurant.html" target="_blank" class="btn-view">View Site</a>
+                </div>
+
+                <div class="website-card" data-website="fitness">
+                    <div class="website-preview">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <h3>Fitness Center</h3>
+                    <p>Gym and fitness training platform</p>
+                    <a href="websites/fitness.html" target="_blank" class="btn-view">View Site</a>
+                </div>
+
+                <div class="website-card" data-website="ecommerce">
+                    <div class="website-preview">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>E-Commerce</h3>
+                    <p>Online shopping platform with cart functionality</p>
+                    <a href="websites/ecommerce.html" target="_blank" class="btn-view">View Site</a>
+                </div>
+
+                <div class="website-card" data-website="realestate">
+                    <div class="website-preview">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Real Estate</h3>
+                    <p>Property listing and search platform</p>
+                    <a href="websites/realestate.html" target="_blank" class="btn-view">View Site</a>
+                </div>
+
+                <div class="website-card" data-website="education">
+                    <div class="website-preview">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Online Learning</h3>
+                    <p>Educational platform with courses</p>
+                    <a href="websites/education.html" target="_blank" class="btn-view">View Site</a>
+                </div>
+
+                <div class="website-card" data-website="travel">
+                    <div class="website-preview">
+                        <i class="fas fa-plane"></i>
+                    </div>
+                    <h3>Travel Agency</h3>
+                    <p>Travel booking and destination explorer</p>
+                    <a href="websites/travel.html" target="_blank" class="btn-view">View Site</a>
+                </div>
+
+                <div class="website-card" data-website="photography">
+                    <div class="website-preview">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3>Photography</h3>
+                    <p>Portfolio showcase for photographers</p>
+                    <a href="websites/photography.html" target="_blank" class="btn-view">View Site</a>
+                </div>
+
+                <div class="website-card" data-website="healthcare">
+                    <div class="website-preview">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Healthcare</h3>
+                    <p>Medical services and appointment booking</p>
+                    <a href="websites/healthcare.html" target="_blank" class="btn-view">View Site</a>
+                </div>
+
+                <div class="website-card" data-website="music">
+                    <div class="website-preview">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3>Music Streaming</h3>
+                    <p>Music player and playlist manager</p>
+                    <a href="websites/music.html" target="_blank" class="btn-view">View Site</a>
+                </div>
+
+                <div class="website-card" data-website="blog">
+                    <div class="website-preview">
+                        <i class="fas fa-blog"></i>
+                    </div>
+                    <h3>Blog Platform</h3>
+                    <p>Content management and publishing system</p>
+                    <a href="websites/blog.html" target="_blank" class="btn-view">View Site</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info-box">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <a href="mailto:ukasha@algotx.dev">ukasha@algotx.dev</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <a href="tel:5715677096">571-567-7096</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <div>
+                            <h4>LinkedIn</h4>
+                            <a href="https://www.linkedin.com/in/ukasha-ahmed" target="_blank">Connect with me</a>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea placeholder="Your Message" rows="5" required></textarea>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 AlgoTX - Ukasha Ahmed. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/ukasha-ahmed" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/ukasha-ahmed" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/particles.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

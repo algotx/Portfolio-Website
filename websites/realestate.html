@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DreamHome Realty - Find Your Perfect Home</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; background: #fff; color: #333; }
+        .nav { background: #1e3a5f; color: #fff; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .nav a { color: #fff; text-decoration: none; margin: 0 1rem; font-weight: 500; }
+        .hero { background: linear-gradient(rgba(30,58,95,0.8), rgba(30,58,95,0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%234a90e2" width="1200" height="600"/></svg>'); height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; }
+        .search-bar { background: #fff; padding: 1.5rem; border-radius: 10px; display: flex; gap: 1rem; max-width: 800px; margin-top: 2rem; }
+        .search-bar input, .search-bar select { padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px; flex: 1; }
+        .search-bar button { background: #e74c3c; color: #fff; padding: 0.8rem 2rem; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .section { padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; }
+        .properties { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .property-card { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 15px rgba(0,0,0,0.1); transition: 0.3s; }
+        .property-card:hover { transform: translateY(-5px); box-shadow: 0 5px 25px rgba(0,0,0,0.2); }
+        .property-img { width: 100%; height: 200px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; font-size: 4rem; }
+        .property-info { padding: 1.5rem; }
+        .property-info h3 { color: #1e3a5f; margin-bottom: 0.5rem; }
+        .property-details { display: flex; gap: 1rem; margin: 1rem 0; color: #666; font-size: 0.9rem; }
+        .price { font-size: 1.8rem; color: #e74c3c; font-weight: bold; margin: 1rem 0; }
+        .btn { background: #1e3a5f; color: #fff; padding: 0.8rem 1.5rem; border: none; border-radius: 5px; cursor: pointer; width: 100%; font-weight: bold; }
+        .btn:hover { background: #2c5282; }
+        h2 { text-align: center; font-size: 2.5rem; color: #1e3a5f; margin-bottom: 2rem; }
+        .badge { background: #e74c3c; color: #fff; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.8rem; position: absolute; top: 10px; right: 10px; }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div style="font-size: 1.5rem; font-weight: bold;">🏠 DreamHome</div>
+        <div>
+            <a href="#properties">Properties</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div>
+            <h1>Find Your Dream Home</h1>
+            <p style="font-size: 1.3rem;">Discover the perfect property for you and your family</p>
+            <div class="search-bar">
+                <input type="text" placeholder="Location">
+                <select>
+                    <option>Property Type</option>
+                    <option>House</option>
+                    <option>Apartment</option>
+                    <option>Condo</option>
+                </select>
+                <select>
+                    <option>Price Range</option>
+                    <option>$0 - $300k</option>
+                    <option>$300k - $500k</option>
+                    <option>$500k+</option>
+                </select>
+                <button>Search</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="properties" class="section">
+        <h2>Featured Properties</h2>
+        <div class="properties">
+            <div class="property-card">
+                <div style="position: relative;">
+                    <div class="property-img">🏡</div>
+                    <span class="badge">NEW</span>
+                </div>
+                <div class="property-info">
+                    <h3>Modern Family Home</h3>
+                    <p>Beautiful 4-bedroom house in quiet neighborhood</p>
+                    <div class="property-details">
+                        <span>🛏️ 4 Beds</span>
+                        <span>🚿 3 Baths</span>
+                        <span>📐 2,500 sqft</span>
+                    </div>
+                    <div class="price">$450,000</div>
+                    <button class="btn" onclick="alert('Contact agent for viewing')">Schedule Tour</button>
+                </div>
+            </div>
+            <div class="property-card">
+                <div style="position: relative;">
+                    <div class="property-img">🏢</div>
+                </div>
+                <div class="property-info">
+                    <h3>Downtown Luxury Condo</h3>
+                    <p>Stunning views, modern amenities, prime location</p>
+                    <div class="property-details">
+                        <span>🛏️ 2 Beds</span>
+                        <span>🚿 2 Baths</span>
+                        <span>📐 1,200 sqft</span>
+                    </div>
+                    <div class="price">$380,000</div>
+                    <button class="btn" onclick="alert('Contact agent for viewing')">Schedule Tour</button>
+                </div>
+            </div>
+            <div class="property-card">
+                <div style="position: relative;">
+                    <div class="property-img">🏘️</div>
+                    <span class="badge">HOT</span>
+                </div>
+                <div class="property-info">
+                    <h3>Suburban Paradise</h3>
+                    <p>Spacious home with large backyard and pool</p>
+                    <div class="property-details">
+                        <span>🛏️ 5 Beds</span>
+                        <span>🚿 4 Baths</span>
+                        <span>📐 3,200 sqft</span>
+                    </div>
+                    <div class="price">$625,000</div>
+                    <button class="btn" onclick="alert('Contact agent for viewing')">Schedule Tour</button>
+                </div>
+            </div>
+            <div class="property-card">
+                <div style="position: relative;">
+                    <div class="property-img">🏠</div>
+                </div>
+                <div class="property-info">
+                    <h3>Cozy Starter Home</h3>
+                    <p>Perfect for first-time buyers, move-in ready</p>
+                    <div class="property-details">
+                        <span>🛏️ 3 Beds</span>
+                        <span>🚿 2 Baths</span>
+                        <span>📐 1,500 sqft</span>
+                    </div>
+                    <div class="price">$285,000</div>
+                    <button class="btn" onclick="alert('Contact agent for viewing')">Schedule Tour</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="services" class="section" style="background: #f8f9fa;">
+        <h2>Our Services</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; text-align: center;">
+            <div style="padding: 2rem; background: #fff; border-radius: 10px;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🔍</div>
+                <h3>Property Search</h3>
+                <p>Find your perfect home from our extensive listings</p>
+            </div>
+            <div style="padding: 2rem; background: #fff; border-radius: 10px;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">💰</div>
+                <h3>Financing Help</h3>
+                <p>Get assistance with mortgages and financing options</p>
+            </div>
+            <div style="padding: 2rem; background: #fff; border-radius: 10px;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">📋</div>
+                <h3>Legal Support</h3>
+                <p>Expert guidance through the buying process</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

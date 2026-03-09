@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthCare Plus - Your Health, Our Priority</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; background: #f8f9fa; color: #333; }
+        .nav { background: #fff; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+        .nav a { color: #0066cc; text-decoration: none; margin: 0 1rem; font-weight: 500; }
+        .hero { background: linear-gradient(135deg, #0066cc 0%, #00a8e8 100%); color: #fff; padding: 5rem 2rem; text-align: center; }
+        .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .section { padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; }
+        .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .service-card { background: #fff; padding: 2rem; border-radius: 10px; box-shadow: 0 2px 15px rgba(0,0,0,0.1); text-align: center; transition: 0.3s; }
+        .service-card:hover { transform: translateY(-5px); box-shadow: 0 5px 25px rgba(0,102,204,0.2); }
+        .service-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .doctors { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+        .doctor-card { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 15px rgba(0,0,0,0.1); text-align: center; }
+        .doctor-img { width: 100%; height: 200px; background: linear-gradient(135deg, #0066cc 0%, #00a8e8 100%); display: flex; align-items: center; justify-content: center; font-size: 5rem; color: #fff; }
+        .doctor-info { padding: 1.5rem; }
+        .btn { background: #0066cc; color: #fff; padding: 0.8rem 1.5rem; border: none; border-radius: 25px; cursor: pointer; font-weight: bold; }
+        .btn:hover { background: #0052a3; }
+        h2 { text-align: center; font-size: 2.5rem; color: #0066cc; margin-bottom: 2rem; }
+        .appointment-form { max-width: 600px; margin: 0 auto; background: #fff; padding: 2rem; border-radius: 10px; box-shadow: 0 2px 15px rgba(0,0,0,0.1); }
+        .appointment-form input, .appointment-form select, .appointment-form textarea { width: 100%; padding: 1rem; margin: 0.5rem 0; border: 1px solid #ddd; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div style="font-size: 1.5rem; font-weight: bold; color: #0066cc;">⚕️ HealthCare Plus</div>
+        <div>
+            <a href="#services">Services</a>
+            <a href="#doctors">Doctors</a>
+            <a href="#appointment">Book Appointment</a>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1>Your Health, Our Priority</h1>
+        <p style="font-size: 1.3rem; margin-bottom: 2rem;">Comprehensive healthcare services with experienced professionals</p>
+        <button class="btn" onclick="document.getElementById('appointment').scrollIntoView({behavior: 'smooth'})">Book Appointment</button>
+    </div>
+
+    <div id="services" class="section">
+        <h2>Our Services</h2>
+        <div class="services">
+            <div class="service-card">
+                <div class="service-icon">🩺</div>
+                <h3>General Medicine</h3>
+                <p>Comprehensive primary care for all ages</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">❤️</div>
+                <h3>Cardiology</h3>
+                <p>Heart health and cardiovascular care</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🦴</div>
+                <h3>Orthopedics</h3>
+                <p>Bone and joint treatment</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">👶</div>
+                <h3>Pediatrics</h3>
+                <p>Specialized care for children</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🧠</div>
+                <h3>Neurology</h3>
+                <p>Brain and nervous system care</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔬</div>
+                <h3>Laboratory</h3>
+                <p>Advanced diagnostic testing</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="doctors" class="section" style="background: #fff;">
+        <h2>Our Doctors</h2>
+        <div class="doctors">
+            <div class="doctor-card">
+                <div class="doctor-img">👨‍⚕️</div>
+                <div class="doctor-info">
+                    <h3>Dr. John Smith</h3>
+                    <p style="color: #0066cc; margin: 0.5rem 0;">Cardiologist</p>
+                    <p style="color: #666; font-size: 0.9rem;">20+ years experience</p>
+                    <button class="btn" style="margin-top: 1rem;" onclick="alert('Booking with Dr. Smith')">Book Appointment</button>
+                </div>
+            </div>
+            <div class="doctor-card">
+                <div class="doctor-img">👩‍⚕️</div>
+                <div class="doctor-info">
+                    <h3>Dr. Sarah Johnson</h3>
+                    <p style="color: #0066cc; margin: 0.5rem 0;">Pediatrician</p>
+                    <p style="color: #666; font-size: 0.9rem;">15+ years experience</p>
+                    <button class="btn" style="margin-top: 1rem;" onclick="alert('Booking with Dr. Johnson')">Book Appointment</button>
+                </div>
+            </div>
+            <div class="doctor-card">
+                <div class="doctor-img">👨‍⚕️</div>
+                <div class="doctor-info">
+                    <h3>Dr. Michael Chen</h3>
+                    <p style="color: #0066cc; margin: 0.5rem 0;">Orthopedic Surgeon</p>
+                    <p style="color: #666; font-size: 0.9rem;">18+ years experience</p>
+                    <button class="btn" style="margin-top: 1rem;" onclick="alert('Booking with Dr. Chen')">Book Appointment</button>
+                </div>
+            </div>
+            <div class="doctor-card">
+                <div class="doctor-img">👩‍⚕️</div>
+                <div class="doctor-info">
+                    <h3>Dr. Emily Davis</h3>
+                    <p style="color: #0066cc; margin: 0.5rem 0;">Neurologist</p>
+                    <p style="color: #666; font-size: 0.9rem;">12+ years experience</p>
+                    <button class="btn" style="margin-top: 1rem;" onclick="alert('Booking with Dr. Davis')">Book Appointment</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="appointment" class="section">
+        <h2>Book an Appointment</h2>
+        <form class="appointment-form" onsubmit="event.preventDefault(); alert('Appointment booked successfully! We will contact you shortly.');">
+            <input type="text" placeholder="Full Name" required>
+            <input type="email" placeholder="Email" required>
+            <input type="tel" placeholder="Phone Number" required>
+            <input type="date" required>
+            <select required>
+                <option value="">Select Department</option>
+                <option>General Medicine</option>
+                <option>Cardiology</option>
+                <option>Orthopedics</option>
+                <option>Pediatrics</option>
+                <option>Neurology</option>
+            </select>
+            <select required>
+                <option value="">Preferred Time</option>
+                <option>9:00 AM - 10:00 AM</option>
+                <option>10:00 AM - 11:00 AM</option>
+                <option>11:00 AM - 12:00 PM</option>
+                <option>2:00 PM - 3:00 PM</option>
+                <option>3:00 PM - 4:00 PM</option>
+                <option>4:00 PM - 5:00 PM</option>
+            </select>
+            <textarea placeholder="Reason for visit (optional)" rows="3"></textarea>
+            <button type="submit" class="btn" style="width: 100%; margin-top: 1rem;">Book Appointment</button>
+        </form>
+    </div>
+
+    <div class="section" style="background: #0066cc; color: #fff; text-align: center;">
+        <h2 style="color: #fff;">Emergency Services</h2>
+        <p style="font-size: 1.2rem; margin: 1rem 0;">24/7 Emergency Care Available</p>
+        <p style="font-size: 2rem; font-weight: bold;">Call: 911 or (555) 123-4567</p>
+    </div>
+</body>
+</html>

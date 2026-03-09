@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games - AlgoTX Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .games-hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--darker-bg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .games-hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            filter: blur(150px);
+            opacity: 0.3;
+            top: -200px;
+            right: -200px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .games-hero-content {
+            text-align: center;
+            z-index: 1;
+        }
+
+        .games-hero h1 {
+            font-size: 4rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .game-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: 0.5s;
+        }
+
+        .game-card:hover::before {
+            left: 100%;
+        }
+
+        .game-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 25px 50px var(--glow-color), 0 0 40px rgba(0, 212, 255, 0.3);
+            border-color: var(--primary-color);
+        }
+
+        .game-thumbnail {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-thumbnail::after {
+            content: '🎮';
+            position: absolute;
+            font-size: 8rem;
+            opacity: 0.1;
+            animation: float-icon 3s ease-in-out infinite;
+        }
+
+        .game-info {
+            padding: 2rem;
+        }
+
+        .game-info h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .game-info p {
+            color: var(--gray-text);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .game-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .game-tag {
+            background: rgba(0, 212, 255, 0.15);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        .play-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--gradient-1);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px var(--glow-color);
+        }
+
+        .play-btn i {
+            margin-right: 0.5rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            padding: 1rem 2rem;
+            margin: 2rem;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+            text-shadow: 0 0 10px var(--glow-color);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--gray-text);
+        }
+
+        .empty-state i {
+            font-size: 5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">AlgoTX</div>
+            <ul class="nav-menu">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#websites">Websites</a></li>
+                <li><a href="games.html">Games</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="games-hero">
+        <div class="games-hero-content">
+            <h1>🎮 Game Collection</h1>
+            <p style="font-size: 1.3rem; color: var(--gray-text);">Play my hosted games directly in your browser</p>
+        </div>
+    </div>
+
+    <a href="index.html" class="back-link">
+        <i class="fas fa-arrow-left"></i> Back to Portfolio
+    </a>
+
+    <div class="games-grid" id="gamesGrid">
+        <!-- Games will be added here -->
+        <div class="empty-state">
+            <i class="fas fa-gamepad"></i>
+            <h2 style="color: var(--light-text); margin-bottom: 1rem;">Games Coming Soon!</h2>
+            <p>Add your game URLs to populate this section</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 AlgoTX - Ukasha Ahmed. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/ukasha-ahmed" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/ukasha-ahmed" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Game data structure - Add your games here
+        const games = [
+            {
+                title: "Mind Flip",
+                description: "Test your memory and concentration! Flip cards to find matching pairs in this classic memory game. Challenge yourself to complete it in the fewest moves possible.",
+                url: "https://loquacious-quokka-dad114.netlify.app/",
+                icon: "🧠",
+                tags: ["Memory", "Puzzle", "Brain Training"],
+                color: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+            },
+            {
+                title: "Color Match",
+                description: "Match the colors as fast as you can! A fast-paced color matching game that tests your reflexes and color recognition skills. How high can you score?",
+                url: "https://superlative-crisp-7b9706.netlify.app/",
+                icon: "🎨",
+                tags: ["Arcade", "Reflex", "Color"],
+                color: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"
+            },
+            {
+                title: "Flappy Bird",
+                description: "Navigate through pipes in this addictive arcade classic! Tap to flap and avoid obstacles. Simple to learn, hard to master. Beat your high score!",
+                url: "https://inspiring-cascaron-d94dee.netlify.app/",
+                icon: "🐦",
+                tags: ["Arcade", "Classic", "Endless"],
+                color: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"
+            },
+            {
+                title: "Geometry Dash",
+                description: "Jump and fly your way through danger in this rhythm-based action platformer! Time your moves perfectly to avoid obstacles and reach the finish line.",
+                url: "https://scintillating-beignet-1dd314.netlify.app/",
+                icon: "🔷",
+                tags: ["Platformer", "Rhythm", "Action"],
+                color: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)"
+            }
+        ];
+
+        function renderGames() {
+            const gamesGrid = document.getElementById('gamesGrid');
+            
+            if (games.length === 0) {
+                // Keep empty state
+                return;
+            }
+
+            gamesGrid.innerHTML = games.map(game => `
+                <div class="game-card">
+                    <div class="game-thumbnail" style="background: ${game.color}">
+                        <span style="font-size: 5rem;">${game.icon}</span>
+                    </div>
+                    <div class="game-info">
+                        <h3>${game.title}</h3>
+                        <p>${game.description}</p>
+                        <div class="game-tags">
+                            ${game.tags.map(tag => `<span class="game-tag">${tag}</span>`).join('')}
+                        </div>
+                        <button class="play-btn" onclick="window.open('${game.url}', '_blank')">
+                            <i class="fas fa-play"></i> Play Now
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render games on page load
+        renderGames();
+
+        // Hamburger menu
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+            });
+        }
+    </script>
+</body>
+</html>

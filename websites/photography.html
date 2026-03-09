@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lens & Light Photography</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; background: #000; color: #fff; }
+        .nav { background: rgba(0,0,0,0.95); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: fixed; width: 100%; z-index: 1000; border-bottom: 1px solid #333; }
+        .nav a { color: #fff; text-decoration: none; margin: 0 1rem; transition: 0.3s; }
+        .nav a:hover { color: #f39c12; }
+        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23333" width="1200" height="600"/></svg>'); }
+        .hero h1 { font-size: 4rem; margin-bottom: 1rem; color: #f39c12; }
+        .section { padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        .gallery-item { position: relative; overflow: hidden; border-radius: 10px; cursor: pointer; aspect-ratio: 1; }
+        .gallery-img { width: 100%; height: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; font-size: 4rem; transition: 0.3s; }
+        .gallery-item:hover .gallery-img { transform: scale(1.1); }
+        .gallery-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.9)); padding: 2rem 1rem 1rem; transform: translateY(100%); transition: 0.3s; }
+        .gallery-item:hover .gallery-overlay { transform: translateY(0); }
+        h2 { text-align: center; font-size: 2.5rem; color: #f39c12; margin-bottom: 2rem; }
+        .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+        .service-card { background: #111; padding: 2rem; border-radius: 10px; text-align: center; border: 1px solid #333; transition: 0.3s; }
+        .service-card:hover { border-color: #f39c12; transform: translateY(-5px); }
+        .btn { background: #f39c12; color: #000; padding: 1rem 2rem; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .btn:hover { background: #e67e22; }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div style="font-size: 1.5rem; font-weight: bold; color: #f39c12;">📸 Lens & Light</div>
+        <div>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div>
+            <h1>Capturing Moments</h1>
+            <p style="font-size: 1.5rem; margin-bottom: 2rem;">Professional Photography Services</p>
+            <button class="btn" onclick="document.getElementById('portfolio').scrollIntoView({behavior: 'smooth'})">View Portfolio</button>
+        </div>
+    </div>
+
+    <div id="portfolio" class="section">
+        <h2>Portfolio</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <div class="gallery-img">🌅</div>
+                <div class="gallery-overlay">
+                    <h3>Landscape</h3>
+                    <p>Golden Hour Sunset</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-img">👰</div>
+                <div class="gallery-overlay">
+                    <h3>Wedding</h3>
+                    <p>Special Moments</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-img">👤</div>
+                <div class="gallery-overlay">
+                    <h3>Portrait</h3>
+                    <p>Professional Headshots</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-img">🏙️</div>
+                <div class="gallery-overlay">
+                    <h3>Urban</h3>
+                    <p>City Life</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-img">🌿</div>
+                <div class="gallery-overlay">
+                    <h3>Nature</h3>
+                    <p>Wildlife & Flora</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-img">🎭</div>
+                <div class="gallery-overlay">
+                    <h3>Events</h3>
+                    <p>Corporate & Private</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="services" class="section" style="background: #0a0a0a;">
+        <h2>Services</h2>
+        <div class="services">
+            <div class="service-card">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">💍</div>
+                <h3>Wedding Photography</h3>
+                <p style="margin: 1rem 0; color: #999;">Capture your special day with stunning photos</p>
+                <p style="font-size: 1.5rem; color: #f39c12; font-weight: bold;">Starting at $2,500</p>
+            </div>
+            <div class="service-card">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">📷</div>
+                <h3>Portrait Sessions</h3>
+                <p style="margin: 1rem 0; color: #999;">Professional headshots and family portraits</p>
+                <p style="font-size: 1.5rem; color: #f39c12; font-weight: bold;">Starting at $300</p>
+            </div>
+            <div class="service-card">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🎉</div>
+                <h3>Event Coverage</h3>
+                <p style="margin: 1rem 0; color: #999;">Corporate events, parties, and celebrations</p>
+                <p style="font-size: 1.5rem; color: #f39c12; font-weight: bold;">Starting at $500</p>
+            </div>
+            <div class="service-card">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🏢</div>
+                <h3>Commercial</h3>
+                <p style="margin: 1rem 0; color: #999;">Product and real estate photography</p>
+                <p style="font-size: 1.5rem; color: #f39c12; font-weight: bold;">Custom Pricing</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="contact" class="section">
+        <h2>Book a Session</h2>
+        <form style="max-width: 600px; margin: 0 auto; background: #111; padding: 2rem; border-radius: 10px;" onsubmit="event.preventDefault(); alert('Thank you! We will contact you soon.');">
+            <input type="text" placeholder="Your Name" required style="width: 100%; padding: 1rem; margin: 0.5rem 0; background: #000; border: 1px solid #333; color: #fff; border-radius: 5px;">
+            <input type="email" placeholder="Email" required style="width: 100%; padding: 1rem; margin: 0.5rem 0; background: #000; border: 1px solid #333; color: #fff; border-radius: 5px;">
+            <input type="tel" placeholder="Phone" required style="width: 100%; padding: 1rem; margin: 0.5rem 0; background: #000; border: 1px solid #333; color: #fff; border-radius: 5px;">
+            <select required style="width: 100%; padding: 1rem; margin: 0.5rem 0; background: #000; border: 1px solid #333; color: #fff; border-radius: 5px;">
+                <option value="">Select Service</option>
+                <option>Wedding Photography</option>
+                <option>Portrait Session</option>
+                <option>Event Coverage</option>
+                <option>Commercial</option>
+            </select>
+            <textarea placeholder="Tell us about your project" rows="4" style="width: 100%; padding: 1rem; margin: 0.5rem 0; background: #000; border: 1px solid #333; color: #fff; border-radius: 5px;"></textarea>
+            <button type="submit" class="btn" style="width: 100%; margin-top: 1rem;">Send Inquiry</button>
+        </form>
+    </div>
+</body>
+</html>
