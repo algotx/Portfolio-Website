@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare Properties - DreamHome Realty</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; background: #f8f9fa; color: #333; }
+        .nav { background: #2c3e50; color: #fff; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .nav a { color: #fff; text-decoration: none; margin: 0 1rem; }
+        .hero-small { background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%); color: #fff; padding: 4rem 2rem; text-align: center; }
+        .hero-small h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 3rem 2rem; }
+        .comparison-table { background: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .table-header { display: grid; grid-template-columns: 200px repeat(3, 1fr); background: #2c3e50; color: #fff; }
+        .table-row { display: grid; grid-template-columns: 200px repeat(3, 1fr); border-bottom: 1px solid #e0e0e0; }
+        .table-row:hover { background: #f8f9fa; }
+        .table-cell { padding: 1.5rem; display: flex; align-items: center; justify-content: center; text-align: center; }
+        .feature-label { font-weight: bold; color: #2c3e50; justify-content: flex-start; background: #ecf0f1; }
+        .property-img { width: 100%; height: 200px; background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: #fff; }
+        .property-name { font-size: 1.3rem; font-weight: bold; color: #2c3e50; }
+        .price { font-size: 1.8rem; color: #27ae60; font-weight: bold; }
+        .check { color: #27ae60; font-size: 1.5rem; }
+        .cross { color: #e74c3c; font-size: 1.5rem; }
+        .btn { background: #3498db; color: #fff; padding: 0.8rem 1.5rem; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .btn:hover { background: #2980b9; }
+        .mortgage-calc { background: #fff; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-top: 3rem; }
+        .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; color: #2c3e50; font-weight: bold; margin-bottom: 0.5rem; }
+        .form-group input { width: 100%; padding: 1rem; border: 2px solid #ddd; border-radius: 8px; font-family: inherit; }
+        .result-box { background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%); color: #fff; padding: 2rem; border-radius: 15px; text-align: center; }
+        .result-value { font-size: 3rem; font-weight: bold; margin: 1rem 0; }
+        h2 { color: #2c3e50; font-size: 2rem; margin-bottom: 1.5rem; }
+        @media (max-width: 1024px) { .table-header, .table-row { grid-template-columns: 150px repeat(3, 1fr); font-size: 0.9rem; } .table-cell { padding: 1rem; } }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div style="font-size: 1.5rem; font-weight: bold;">DreamHome</div>
+        <div>
+            <a href="realestate.html">Home</a>
+            <a href="#listings">Listings</a>
+            <a href="realestate-compare.html">Compare</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <div class="hero-small">
+        <h1>Compare Properties</h1>
+        <p style="font-size: 1.2rem;">Find the perfect home by comparing features side-by-side</p>
+    </div>
+
+    <div class="container">
+        <div class="comparison-table">
+            <div class="table-header">
+                <div class="table-cell" style="justify-content: flex-start;">Features</div>
+                <div class="table-cell">
+                    <div>
+                        <div class="property-img">🏡</div>
+                        <div style="padding: 1rem;">
+                            <div class="property-name">Modern Villa</div>
+                            <div class="price">$850,000</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-cell">
+                    <div>
+                        <div class="property-img">🏠</div>
+                        <div style="padding: 1rem;">
+                            <div class="property-name">Downtown Condo</div>
+                            <div class="price">$425,000</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-cell">
+                    <div>
+                        <div class="property-img">🏘️</div>
+                        <div style="padding: 1rem;">
+                            <div class="property-name">Suburban House</div>
+                            <div class="price">$625,000</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-row">
+                <div class="table-cell feature-label">Bedrooms</div>
+                <div class="table-cell">5</div>
+                <div class="table-cell">2</div>
+                <div class="table-cell">4</div>
+            </div>
+
+            <div class="table-row">
+                <div class="table-cell feature-label">Bathrooms</div>
+                <div class="table-cell">4</div>
+                <div class="table-cell">2</div>
+                <div class="table-cell">3</div>
+            </div>
+
+            <div class="table-row">
+                <div class="table-cell feature-label">Square Feet</div>
+                <div class="table-cell">4,200 sq ft</div>
+                <div class="table-cell">1,200 sq ft</div>
+                <div class="table-cell">2,800 sq ft</div>
+            </div>
+
+            <div class="table-row">
+                <div class="table-cell feature-label">Lot Size</div>
+                <div class="table-cell">0.5 acres</div>
+                <div class="table-cell">N/A</div>
+                <div class="table-cell">0.25 acres</div>
+            </div>
+
+            <div class="table-row">
+                <div class="table-cell feature-label">Year Built</div>
+                <div class="table-cell">2022</div>
+                <div class="table-cell">2020</div>
+                <div class="table-cell">2018</div>
+            </div>
+
+            <div class="table-row">
+                <div class="table-cell feature-label">Garage</div>
+                <div class="table-cell"><span class="check">✓</span> 3-car</div>
+                <div class="table-cell"><span class="check">✓</span> 1-car</div>
+                <div class="table-cell"><span class="check">✓</span> 2-car</div>
+            </div>
+
+            <div class="table-row">
+                <div class="table-cell feature-label">Pool</div>
+                <div class="table-cell"><span class="check">✓</span></div>
+                <div class="table-cell"><span class="cross">✗</span></div>
+                <div class="table-cell"><span class="cross">✗</span></div>
+            </div>
+
+            <div class="table-row">
+                <div class="table-cell feature-label">Smart Home</div>
+                <div class="table-cell"><span class="check">✓</span></div>
+                <div class="table-cell"><span class="check">✓</span></div>
+                <div class="table-cell"><span class="cross">✗</span></div>
+            </div>
+
+            <div class="table-row">
+                <div class="table-cell feature-label">Fireplace</div>
+                <div class="table-cell"><span class="check">✓</span> 2</div>
+                <div class="table-cell"><span class="cross">✗</span></div>
+                <div class="table-cell"><span class="check">✓</span> 1</div>
+            </div>
+
+            <div class="table-row">
+                <div class="table-cell feature-label">HOA Fees</div>
+                <div class="table-cell">$200/mo</div>
+                <div class="table-cell">$350/mo</div>
+                <div class="table-cell">$150/mo</div>
+            </div>
+
+            <div class="table-row">
+                <div class="table-cell feature-label">Property Tax</div>
+                <div class="table-cell">$8,500/yr</div>
+                <div class="table-cell">$4,250/yr</div>
+                <div class="table-cell">$6,250/yr</div>
+            </div>
+
+            <div class="table-row">
+                <div class="table-cell feature-label">School District</div>
+                <div class="table-cell">⭐⭐⭐⭐⭐</div>
+                <div class="table-cell">⭐⭐⭐⭐</div>
+                <div class="table-cell">⭐⭐⭐⭐⭐</div>
+            </div>
+
+            <div class="table-row">
+                <div class="table-cell feature-label"></div>
+                <div class="table-cell">
+                    <button class="btn" onclick="alert('Scheduling tour for Modern Villa...')">Schedule Tour</button>
+                </div>
+                <div class="table-cell">
+                    <button class="btn" onclick="alert('Scheduling tour for Downtown Condo...')">Schedule Tour</button>
+                </div>
+                <div class="table-cell">
+                    <button class="btn" onclick="alert('Scheduling tour for Suburban House...')">Schedule Tour</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="mortgage-calc">
+            <h2>Mortgage Calculator</h2>
+            <div class="calc-grid">
+                <div>
+                    <div class="form-group">
+                        <label>Home Price</label>
+                        <input type="number" id="homePrice" value="625000" placeholder="625000">
+                    </div>
+                    <div class="form-group">
+                        <label>Down Payment (%)</label>
+                        <input type="number" id="downPayment" value="20" placeholder="20">
+                    </div>
+                    <div class="form-group">
+                        <label>Interest Rate (%)</label>
+                        <input type="number" id="interestRate" value="6.5" step="0.1" placeholder="6.5">
+                    </div>
+                    <div class="form-group">
+                        <label>Loan Term (years)</label>
+                        <input type="number" id="loanTerm" value="30" placeholder="30">
+                    </div>
+                    <button class="btn" style="width: 100%;" onclick="calculateMortgage()">Calculate Payment</button>
+                </div>
+                <div class="result-box">
+                    <h3 style="margin-bottom: 1rem;">Monthly Payment</h3>
+                    <div class="result-value" id="monthlyPayment">$3,158</div>
+                    <div style="margin-top: 2rem; text-align: left;">
+                        <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.2);">
+                            <span>Principal & Interest:</span>
+                            <span id="piPayment">$3,158</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.2);">
+                            <span>Property Tax:</span>
+                            <span id="taxPayment">$521</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.2);">
+                            <span>HOA Fees:</span>
+                            <span id="hoaPayment">$150</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 1rem 0; font-size: 1.2rem; font-weight: bold;">
+                            <span>Total Monthly:</span>
+                            <span id="totalPayment">$3,829</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calculateMortgage() {
+            const price = parseFloat(document.getElementById('homePrice').value);
+            const downPercent = parseFloat(document.getElementById('downPayment').value);
+            const rate = parseFloat(document.getElementById('interestRate').value) / 100 / 12;
+            const term = parseFloat(document.getElementById('loanTerm').value) * 12;
+            
+            const downPayment = price * (downPercent / 100);
+            const loanAmount = price - downPayment;
+            
+            const monthlyPI = loanAmount * (rate * Math.pow(1 + rate, term)) / (Math.pow(1 + rate, term) - 1);
+            const monthlyTax = (price * 0.01) / 12;
+            const monthlyHOA = 150;
+            const total = monthlyPI + monthlyTax + monthlyHOA;
+            
+            document.getElementById('monthlyPayment').textContent = '$' + monthlyPI.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            document.getElementById('piPayment').textContent = '$' + monthlyPI.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            document.getElementById('taxPayment').textContent = '$' + monthlyTax.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            document.getElementById('hoaPayment').textContent = '$' + monthlyHOA.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            document.getElementById('totalPayment').textContent = '$' + total.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        }
+        
+        calculateMortgage();
+    </script>
+</body>
+</html>

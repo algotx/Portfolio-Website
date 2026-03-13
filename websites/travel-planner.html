@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Planner - Wanderlust Travel</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; background: #f0f8ff; color: #333; }
+        .nav { background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%); color: #fff; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 20px rgba(0,180,219,0.3); }
+        .nav a { color: #fff; text-decoration: none; margin: 0 1rem; font-weight: bold; transition: 0.3s; }
+        .nav a:hover { opacity: 0.8; }
+        .hero-small { background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%); padding: 4rem 2rem; text-align: center; color: #fff; }
+        .hero-small h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .planner-container { max-width: 1400px; margin: 0 auto; padding: 3rem 2rem; display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; }
+        .sidebar { background: #fff; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); height: fit-content; position: sticky; top: 100px; }
+        .trip-details { background: #fff; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; color: #0083b0; font-weight: bold; margin-bottom: 0.5rem; }
+        .form-group input, .form-group select { width: 100%; padding: 1rem; border: 2px solid #00b4db; border-radius: 10px; font-family: inherit; }
+        .btn { background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%); color: #fff; padding: 1rem 2rem; border: none; border-radius: 25px; cursor: pointer; font-weight: bold; width: 100%; transition: 0.3s; }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,180,219,0.4); }
+        .day-card { background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 2rem; border-radius: 15px; margin-bottom: 1.5rem; border-left: 4px solid #00b4db; }
+        .day-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+        .day-number { background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%); color: #fff; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; }
+        .activity { background: #fff; padding: 1.5rem; border-radius: 10px; margin: 1rem 0; box-shadow: 0 2px 10px rgba(0,0,0,0.05); display: flex; gap: 1rem; }
+        .activity-icon { font-size: 2rem; }
+        .activity-time { color: #00b4db; font-weight: bold; margin-bottom: 0.5rem; }
+        .add-activity { background: #fff; padding: 1rem; border-radius: 10px; border: 2px dashed #00b4db; text-align: center; cursor: pointer; color: #00b4db; font-weight: bold; transition: 0.3s; }
+        .add-activity:hover { background: #f0f8ff; }
+        h2 { color: #0083b0; margin-bottom: 1.5rem; }
+        .budget-summary { background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%); color: #fff; padding: 1.5rem; border-radius: 10px; margin-top: 2rem; }
+        .budget-item { display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.2); }
+        .budget-total { font-size: 1.5rem; font-weight: bold; margin-top: 1rem; padding-top: 1rem; border-top: 2px solid #fff; }
+        @media (max-width: 1024px) { .planner-container { grid-template-columns: 1fr; } .sidebar { position: relative; top: 0; } }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div style="font-size: 1.5rem; font-weight: bold;">Wanderlust</div>
+        <div>
+            <a href="travel.html">Home</a>
+            <a href="travel-planner.html">Trip Planner</a>
+            <a href="#destinations">Destinations</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <div class="hero-small">
+        <h1>Plan Your Perfect Trip</h1>
+        <p style="font-size: 1.2rem;">Create detailed itineraries and manage your travel budget</p>
+    </div>
+
+    <div class="planner-container">
+        <div class="sidebar">
+            <h2>Trip Overview</h2>
+            <div class="form-group">
+                <label>Trip Name</label>
+                <input type="text" value="European Adventure" placeholder="My Amazing Trip">
+            </div>
+            <div class="form-group">
+                <label>Destination</label>
+                <input type="text" value="Paris, France" placeholder="Where to?">
+            </div>
+            <div class="form-group">
+                <label>Start Date</label>
+                <input type="date" value="2026-06-15">
+            </div>
+            <div class="form-group">
+                <label>End Date</label>
+                <input type="date" value="2026-06-22">
+            </div>
+            <div class="form-group">
+                <label>Travelers</label>
+                <select>
+                    <option>1 Person</option>
+                    <option selected>2 People</option>
+                    <option>3 People</option>
+                    <option>4+ People</option>
+                </select>
+            </div>
+
+            <div class="budget-summary">
+                <h3 style="margin-bottom: 1rem;">Budget Breakdown</h3>
+                <div class="budget-item">
+                    <span>Flights</span>
+                    <span>$1,200</span>
+                </div>
+                <div class="budget-item">
+                    <span>Accommodation</span>
+                    <span>$980</span>
+                </div>
+                <div class="budget-item">
+                    <span>Activities</span>
+                    <span>$450</span>
+                </div>
+                <div class="budget-item">
+                    <span>Food & Dining</span>
+                    <span>$560</span>
+                </div>
+                <div class="budget-item">
+                    <span>Transportation</span>
+                    <span>$180</span>
+                </div>
+                <div class="budget-total">
+                    <span>Total Budget</span>
+                    <span>$3,370</span>
+                </div>
+            </div>
+
+            <button class="btn" style="margin-top: 2rem;" onclick="alert('Trip saved successfully!')">Save Trip</button>
+            <button class="btn" style="margin-top: 1rem; background: #fff; color: #00b4db; border: 2px solid #00b4db;" onclick="alert('Sharing options...')">Share Itinerary</button>
+        </div>
+
+        <div class="trip-details">
+            <h2>Daily Itinerary</h2>
+            
+            <div class="day-card">
+                <div class="day-header">
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div class="day-number">1</div>
+                        <div>
+                            <h3 style="color: #0083b0;">Day 1 - Arrival</h3>
+                            <p style="color: #666;">June 15, 2026</p>
+                        </div>
+                    </div>
+                    <button class="btn" style="width: auto; padding: 0.5rem 1rem; font-size: 0.9rem;">Edit Day</button>
+                </div>
+
+                <div class="activity">
+                    <div class="activity-icon">✈️</div>
+                    <div style="flex: 1;">
+                        <div class="activity-time">10:00 AM</div>
+                        <h4 style="margin-bottom: 0.5rem;">Arrive at Charles de Gaulle Airport</h4>
+                        <p style="color: #666;">Flight AA123 from New York</p>
+                        <p style="color: #00b4db; margin-top: 0.5rem;">💰 $1,200</p>
+                    </div>
+                </div>
+
+                <div class="activity">
+                    <div class="activity-icon">🏨</div>
+                    <div style="flex: 1;">
+                        <div class="activity-time">2:00 PM</div>
+                        <h4 style="margin-bottom: 0.5rem;">Check-in at Hotel Le Marais</h4>
+                        <p style="color: #666;">123 Rue de Rivoli, Paris</p>
+                        <p style="color: #00b4db; margin-top: 0.5rem;">💰 $140/night</p>
+                    </div>
+                </div>
+
+                <div class="activity">
+                    <div class="activity-icon">🍽️</div>
+                    <div style="flex: 1;">
+                        <div class="activity-time">7:00 PM</div>
+                        <h4 style="margin-bottom: 0.5rem;">Dinner at Le Comptoir</h4>
+                        <p style="color: #666;">Traditional French cuisine</p>
+                        <p style="color: #00b4db; margin-top: 0.5rem;">💰 $80</p>
+                    </div>
+                </div>
+
+                <div class="add-activity" onclick="alert('Add new activity...')">+ Add Activity</div>
+            </div>
+
+            <div class="day-card">
+                <div class="day-header">
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div class="day-number">2</div>
+                        <div>
+                            <h3 style="color: #0083b0;">Day 2 - Exploring Paris</h3>
+                            <p style="color: #666;">June 16, 2026</p>
+                        </div>
+                    </div>
+                    <button class="btn" style="width: auto; padding: 0.5rem 1rem; font-size: 0.9rem;">Edit Day</button>
+                </div>
+
+                <div class="activity">
+                    <div class="activity-icon">🗼</div>
+                    <div style="flex: 1;">
+                        <div class="activity-time">9:00 AM</div>
+                        <h4 style="margin-bottom: 0.5rem;">Visit Eiffel Tower</h4>
+                        <p style="color: #666;">Skip-the-line tickets included</p>
+                        <p style="color: #00b4db; margin-top: 0.5rem;">💰 $35</p>
+                    </div>
+                </div>
+
+                <div class="activity">
+                    <div class="activity-icon">🎨</div>
+                    <div style="flex: 1;">
+                        <div class="activity-time">2:00 PM</div>
+                        <h4 style="margin-bottom: 0.5rem;">Louvre Museum Tour</h4>
+                        <p style="color: #666;">Guided tour with art historian</p>
+                        <p style="color: #00b4db; margin-top: 0.5rem;">💰 $65</p>
+                    </div>
+                </div>
+
+                <div class="activity">
+                    <div class="activity-icon">🚢</div>
+                    <div style="flex: 1;">
+                        <div class="activity-time">7:00 PM</div>
+                        <h4 style="margin-bottom: 0.5rem;">Seine River Cruise</h4>
+                        <p style="color: #666;">Dinner cruise with live music</p>
+                        <p style="color: #00b4db; margin-top: 0.5rem;">💰 $120</p>
+                    </div>
+                </div>
+
+                <div class="add-activity" onclick="alert('Add new activity...')">+ Add Activity</div>
+            </div>
+
+            <div class="day-card">
+                <div class="day-header">
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div class="day-number">3</div>
+                        <div>
+                            <h3 style="color: #0083b0;">Day 3 - Day Trip to Versailles</h3>
+                            <p style="color: #666;">June 17, 2026</p>
+                        </div>
+                    </div>
+                    <button class="btn" style="width: auto; padding: 0.5rem 1rem; font-size: 0.9rem;">Edit Day</button>
+                </div>
+
+                <div class="activity">
+                    <div class="activity-icon">🚆</div>
+                    <div style="flex: 1;">
+                        <div class="activity-time">8:00 AM</div>
+                        <h4 style="margin-bottom: 0.5rem;">Train to Versailles</h4>
+                        <p style="color: #666;">RER C line from Paris</p>
+                        <p style="color: #00b4db; margin-top: 0.5rem;">💰 $15</p>
+                    </div>
+                </div>
+
+                <div class="activity">
+                    <div class="activity-icon">🏰</div>
+                    <div style="flex: 1;">
+                        <div class="activity-time">10:00 AM</div>
+                        <h4 style="margin-bottom: 0.5rem;">Palace of Versailles Tour</h4>
+                        <p style="color: #666;">Full access to palace and gardens</p>
+                        <p style="color: #00b4db; margin-top: 0.5rem;">💰 $45</p>
+                    </div>
+                </div>
+
+                <div class="add-activity" onclick="alert('Add new activity...')">+ Add Activity</div>
+            </div>
+
+            <button class="btn" style="margin-top: 2rem;" onclick="alert('Adding new day...')">+ Add Another Day</button>
+        </div>
+    </div>
+</body>
+</html>

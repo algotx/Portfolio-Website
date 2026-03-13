@@ -52,7 +52,7 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#websites">Websites</a></li>
-                <li><a href="games.html">Games</a></li>
+                <li><a href="#games">Games</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="hamburger">
@@ -137,6 +137,15 @@
                                 </div>
                             </div>
                             <div class="skill-category">
+                                <h5>AI Tools</h5>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Kiro</span>
+                                    <span class="skill-tag">Amazon Q</span>
+                                    <span class="skill-tag">ChatGPT</span>
+                                    <span class="skill-tag">Copilot</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
                                 <h5>Tools</h5>
                                 <div class="skill-tags">
                                     <span class="skill-tag">IntelliJ IDEA</span>
@@ -165,6 +174,19 @@
         <div class="container">
             <h2 class="section-title">Project Experience</h2>
             <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Fluent Validators</h3>
+                    <p class="tech-stack">Java, Maven Central, Open Source</p>
+                    <ul class="project-details">
+                        <li>Created a lightweight, zero-dependency Java validation library with fluent API</li>
+                        <li>Published to Maven Central with comprehensive documentation and test coverage</li>
+                        <li>Designed type-safe, chainable validation rules for strings, numbers, and collections</li>
+                    </ul>
+                </div>
+
                 <div class="project-card">
                     <div class="project-icon">
                         <i class="fas fa-comments"></i>
@@ -305,39 +327,99 @@
         </div>
     </section>
 
+    <section id="games" class="games">
+        <div class="container">
+            <h2 class="section-title">Game Collection</h2>
+            <p class="section-subtitle">Play my hosted games directly in your browser</p>
+            <div class="games-grid">
+                <div class="game-card" data-game="mind-flip">
+                    <div class="game-preview">
+                        <span style="font-size: 5rem;">🧠</span>
+                    </div>
+                    <h3>Mind Flip</h3>
+                    <p>Test your memory and concentration! Flip cards to find matching pairs.</p>
+                    <div class="game-tags">
+                        <span class="game-tag">Memory</span>
+                        <span class="game-tag">Puzzle</span>
+                    </div>
+                    <a href="https://loquacious-quokka-dad114.netlify.app/" target="_blank" class="btn-view">
+                        <i class="fas fa-play"></i> Play Now
+                    </a>
+                </div>
+
+                <div class="game-card" data-game="color-match">
+                    <div class="game-preview">
+                        <span style="font-size: 5rem;">🎨</span>
+                    </div>
+                    <h3>Color Match</h3>
+                    <p>Match the colors as fast as you can! Test your reflexes and color recognition.</p>
+                    <div class="game-tags">
+                        <span class="game-tag">Arcade</span>
+                        <span class="game-tag">Reflex</span>
+                    </div>
+                    <a href="https://superlative-crisp-7b9706.netlify.app/" target="_blank" class="btn-view">
+                        <i class="fas fa-play"></i> Play Now
+                    </a>
+                </div>
+
+                <div class="game-card" data-game="flappy-bird">
+                    <div class="game-preview">
+                        <span style="font-size: 5rem;">🐦</span>
+                    </div>
+                    <h3>Flappy Bird</h3>
+                    <p>Navigate through pipes in this addictive arcade classic! Beat your high score.</p>
+                    <div class="game-tags">
+                        <span class="game-tag">Arcade</span>
+                        <span class="game-tag">Classic</span>
+                    </div>
+                    <a href="https://inspiring-cascaron-d94dee.netlify.app/" target="_blank" class="btn-view">
+                        <i class="fas fa-play"></i> Play Now
+                    </a>
+                </div>
+
+                <div class="game-card" data-game="geometry-dash">
+                    <div class="game-preview">
+                        <span style="font-size: 5rem;">🔷</span>
+                    </div>
+                    <h3>Geometry Dash</h3>
+                    <p>Jump and fly through danger in this rhythm-based action platformer!</p>
+                    <div class="game-tags">
+                        <span class="game-tag">Platformer</span>
+                        <span class="game-tag">Rhythm</span>
+                    </div>
+                    <a href="https://scintillating-beignet-1dd314.netlify.app/" target="_blank" class="btn-view">
+                        <i class="fas fa-play"></i> Play Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contact" class="contact">
         <div class="container">
             <h2 class="section-title">Get In Touch</h2>
             <div class="contact-content">
-                <div class="contact-info-box">
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <h4>Email</h4>
-                            <a href="mailto:ukasha@algotx.dev">ukasha@algotx.dev</a>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <div>
-                            <h4>Phone</h4>
-                            <a href="tel:5715677096">571-567-7096</a>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fab fa-linkedin"></i>
-                        <div>
-                            <h4>LinkedIn</h4>
-                            <a href="https://www.linkedin.com/in/ukasha-ahmed" target="_blank">Connect with me</a>
-                        </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h4>Email</h4>
+                        <a href="mailto:ukasha@algotx.dev">ukasha@algotx.dev</a>
                     </div>
                 </div>
-                <form class="contact-form">
-                    <input type="text" placeholder="Your Name" required>
-                    <input type="email" placeholder="Your Email" required>
-                    <textarea placeholder="Your Message" rows="5" required></textarea>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
-                </form>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <h4>Phone</h4>
+                        <a href="tel:5715677096">571-567-7096</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin"></i>
+                    <div>
+                        <h4>LinkedIn</h4>
+                        <a href="https://www.linkedin.com/in/ukasha-ahmed" target="_blank">Connect with me</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search - TechBlog</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #f8f9fa; color: #333; line-height: 1.6; }
+        .nav { background: #fff; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+        .nav a { color: #333; text-decoration: none; margin: 0 1rem; font-weight: 500; }
+        .hero-small { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; padding: 4rem 2rem; text-align: center; }
+        .hero-small h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem; }
+        .search-box { background: #fff; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-bottom: 2rem; }
+        .search-input { width: 100%; padding: 1.5rem; border: 2px solid #667eea; border-radius: 50px; font-size: 1.1rem; font-family: inherit; }
+        .filters { display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap; }
+        .filter-btn { padding: 0.8rem 1.5rem; background: #f8f9fa; border: 2px solid #e0e0e0; border-radius: 25px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .filter-btn.active { background: #667eea; color: #fff; border-color: #667eea; }
+        .results-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+        .sort-dropdown { padding: 0.8rem 1.5rem; border: 2px solid #e0e0e0; border-radius: 10px; font-family: inherit; }
+        .article-card { background: #fff; padding: 2rem; border-radius: 15px; margin-bottom: 1.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: 0.3s; display: flex; gap: 2rem; }
+        .article-card:hover { transform: translateY(-3px); box-shadow: 0 5px 20px rgba(0,0,0,0.15); }
+        .article-img { width: 200px; height: 150px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 10px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 3rem; }
+        .article-content { flex: 1; }
+        .article-meta { display: flex; gap: 1rem; color: #666; font-size: 0.9rem; margin-bottom: 0.5rem; }
+        .article-title { font-size: 1.5rem; color: #333; margin-bottom: 0.5rem; font-weight: bold; }
+        .article-excerpt { color: #666; margin-bottom: 1rem; }
+        .tag { background: #e0e7ff; color: #667eea; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.85rem; display: inline-block; margin-right: 0.5rem; }
+        .highlight { background: #fef3c7; padding: 0 0.3rem; }
+        .no-results { text-align: center; padding: 5rem 2rem; }
+        .no-results-icon { font-size: 5rem; margin-bottom: 1rem; }
+        h2 { color: #333; font-size: 2rem; margin-bottom: 1.5rem; }
+        @media (max-width: 768px) { .article-card { flex-direction: column; } .article-img { width: 100%; height: 200px; } }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div style="font-size: 1.5rem; font-weight: bold;">📝 TechBlog</div>
+        <div>
+            <a href="blog.html">Home</a>
+            <a href="blog-search.html">Search</a>
+            <a href="#categories">Categories</a>
+            <a href="#about">About</a>
+        </div>
+    </nav>
+
+    <div class="hero-small">
+        <h1>Search Articles</h1>
+        <p style="font-size: 1.2rem;">Find exactly what you're looking for</p>
+    </div>
+
+    <div class="container">
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="Search articles, topics, authors..." id="searchInput" oninput="performSearch()">
+            <div class="filters">
+                <button class="filter-btn active" onclick="filterCategory(this, 'all')">All</button>
+                <button class="filter-btn" onclick="filterCategory(this, 'web')">Web Development</button>
+                <button class="filter-btn" onclick="filterCategory(this, 'ai')">AI & ML</button>
+                <button class="filter-btn" onclick="filterCategory(this, 'mobile')">Mobile</button>
+                <button class="filter-btn" onclick="filterCategory(this, 'cloud')">Cloud</button>
+                <button class="filter-btn" onclick="filterCategory(this, 'security')">Security</button>
+            </div>
+        </div>
+
+        <div class="results-header">
+            <h2 id="resultsCount">Showing 12 results</h2>
+            <select class="sort-dropdown" onchange="sortResults(this.value)">
+                <option value="relevance">Sort by: Relevance</option>
+                <option value="date">Sort by: Date</option>
+                <option value="popular">Sort by: Most Popular</option>
+            </select>
+        </div>
+
+        <div id="resultsContainer">
+            <div class="article-card" data-category="web">
+                <div class="article-img">💻</div>
+                <div class="article-content">
+                    <div class="article-meta">
+                        <span>👤 John Smith</span>
+                        <span>📅 March 10, 2026</span>
+                        <span>⏱️ 8 min read</span>
+                    </div>
+                    <div class="article-title">Building Modern Web Applications with React</div>
+                    <div class="article-excerpt">
+                        Learn how to create scalable and performant web applications using React, Redux, and modern JavaScript features...
+                    </div>
+                    <div>
+                        <span class="tag">React</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Web Development</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="article-card" data-category="ai">
+                <div class="article-img">🤖</div>
+                <div class="article-content">
+                    <div class="article-meta">
+                        <span>👤 Sarah Johnson</span>
+                        <span>📅 March 8, 2026</span>
+                        <span>⏱️ 12 min read</span>
+                    </div>
+                    <div class="article-title">Introduction to Machine Learning with Python</div>
+                    <div class="article-excerpt">
+                        Dive into the world of machine learning and discover how to build your first ML models using Python and scikit-learn...
+                    </div>
+                    <div>
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">AI</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="article-card" data-category="mobile">
+                <div class="article-img">📱</div>
+                <div class="article-content">
+                    <div class="article-meta">
+                        <span>👤 Mike Chen</span>
+                        <span>📅 March 5, 2026</span>
+                        <span>⏱️ 10 min read</span>
+                    </div>
+                    <div class="article-title">Flutter vs React Native: Which Should You Choose?</div>
+                    <div class="article-excerpt">
+                        A comprehensive comparison of the two most popular cross-platform mobile development frameworks...
+                    </div>
+                    <div>
+                        <span class="tag">Flutter</span>
+                        <span class="tag">React Native</span>
+                        <span class="tag">Mobile</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="article-card" data-category="cloud">
+                <div class="article-img">☁️</div>
+                <div class="article-content">
+                    <div class="article-meta">
+                        <span>👤 Emily Davis</span>
+                        <span>📅 March 3, 2026</span>
+                        <span>⏱️ 15 min read</span>
+                    </div>
+                    <div class="article-title">AWS vs Azure vs Google Cloud: A Complete Guide</div>
+                    <div class="article-excerpt">
+                        Compare the three major cloud providers and learn which one is best suited for your project needs...
+                    </div>
+                    <div>
+                        <span class="tag">AWS</span>
+                        <span class="tag">Azure</span>
+                        <span class="tag">Cloud Computing</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="article-card" data-category="security">
+                <div class="article-img">🔒</div>
+                <div class="article-content">
+                    <div class="article-meta">
+                        <span>👤 David Wilson</span>
+                        <span>📅 March 1, 2026</span>
+                        <span>⏱️ 9 min read</span>
+                    </div>
+                    <div class="article-title">Web Security Best Practices for 2026</div>
+                    <div class="article-excerpt">
+                        Protect your web applications from common vulnerabilities with these essential security practices...
+                    </div>
+                    <div>
+                        <span class="tag">Security</span>
+                        <span class="tag">Web Development</span>
+                        <span class="tag">Best Practices</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="article-card" data-category="web">
+                <div class="article-img">🎨</div>
+                <div class="article-content">
+                    <div class="article-meta">
+                        <span>👤 Lisa Anderson</span>
+                        <span>📅 Feb 28, 2026</span>
+                        <span>⏱️ 7 min read</span>
+                    </div>
+                    <div class="article-title">CSS Grid and Flexbox: A Complete Guide</div>
+                    <div class="article-excerpt">
+                        Master modern CSS layout techniques and create responsive designs with ease...
+                    </div>
+                    <div>
+                        <span class="tag">CSS</span>
+                        <span class="tag">Web Design</span>
+                        <span class="tag">Frontend</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="article-card" data-category="ai">
+                <div class="article-img">🧠</div>
+                <div class="article-content">
+                    <div class="article-meta">
+                        <span>👤 James Brown</span>
+                        <span>📅 Feb 25, 2026</span>
+                        <span>⏱️ 14 min read</span>
+                    </div>
+                    <div class="article-title">Deep Learning with TensorFlow and Keras</div>
+                    <div class="article-excerpt">
+                        Build and train neural networks for image classification, natural language processing, and more...
+                    </div>
+                    <div>
+                        <span class="tag">Deep Learning</span>
+                        <span class="tag">TensorFlow</span>
+                        <span class="tag">Neural Networks</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="article-card" data-category="mobile">
+                <div class="article-img">📲</div>
+                <div class="article-content">
+                    <div class="article-meta">
+                        <span>👤 Anna Martinez</span>
+                        <span>📅 Feb 22, 2026</span>
+                        <span>⏱️ 11 min read</span>
+                    </div>
+                    <div class="article-title">Building iOS Apps with SwiftUI</div>
+                    <div class="article-excerpt">
+                        Learn Apple's modern declarative framework for building beautiful iOS applications...
+                    </div>
+                    <div>
+                        <span class="tag">SwiftUI</span>
+                        <span class="tag">iOS</span>
+                        <span class="tag">Swift</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentCategory = 'all';
+
+        function filterCategory(element, category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+            currentCategory = category;
+            performSearch();
+        }
+
+        function performSearch() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.article-card');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const category = card.dataset.category;
+                const text = card.textContent.toLowerCase();
+                const matchesSearch = searchTerm === '' || text.includes(searchTerm);
+                const matchesCategory = currentCategory === 'all' || category === currentCategory;
+
+                if (matchesSearch && matchesCategory) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            document.getElementById('resultsCount').textContent = `Showing ${visibleCount} result${visibleCount !== 1 ? 's' : ''}`;
+        }
+
+        function sortResults(sortBy) {
+            alert('Sorting by: ' + sortBy);
+        }
+    </script>
+</body>
+</html>

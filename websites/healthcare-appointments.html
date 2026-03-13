@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment - HealthCare Plus</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; background: #f0f9ff; color: #333; }
+        .nav { background: #0ea5e9; color: #fff; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .nav a { color: #fff; text-decoration: none; margin: 0 1rem; font-weight: bold; }
+        .hero-small { background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); color: #fff; padding: 4rem 2rem; text-align: center; }
+        .hero-small h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 3rem 2rem; }
+        .booking-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; }
+        .doctors-list { background: #fff; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .doctor-card { background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%); padding: 1.5rem; border-radius: 10px; margin-bottom: 1rem; cursor: pointer; transition: 0.3s; border: 2px solid transparent; }
+        .doctor-card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(14,165,233,0.2); }
+        .doctor-card.selected { border-color: #0ea5e9; background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%); }
+        .doctor-avatar { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: #fff; margin-bottom: 1rem; }
+        .doctor-name { font-size: 1.3rem; font-weight: bold; color: #0284c7; margin-bottom: 0.3rem; }
+        .doctor-specialty { color: #64748b; font-size: 0.95rem; margin-bottom: 0.5rem; }
+        .doctor-rating { color: #fbbf24; margin-bottom: 0.5rem; }
+        .booking-form { background: #fff; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .form-section { margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 2px solid #e0f2fe; }
+        .form-section:last-child { border-bottom: none; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; color: #0284c7; font-weight: bold; margin-bottom: 0.5rem; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 1rem; border: 2px solid #e0f2fe; border-radius: 10px; font-family: inherit; }
+        .time-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+        .time-slot { padding: 1rem; background: #f8fafc; border: 2px solid #e0f2fe; border-radius: 10px; text-align: center; cursor: pointer; transition: 0.3s; font-weight: bold; }
+        .time-slot:hover { background: #e0f2fe; }
+        .time-slot.selected { background: #0ea5e9; color: #fff; border-color: #0ea5e9; }
+        .time-slot.unavailable { opacity: 0.3; cursor: not-allowed; }
+        .btn { background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); color: #fff; padding: 1rem 2rem; border: none; border-radius: 25px; cursor: pointer; font-weight: bold; width: 100%; font-size: 1.1rem; transition: 0.3s; }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(14,165,233,0.4); }
+        h2 { color: #0284c7; font-size: 2rem; margin-bottom: 1.5rem; }
+        h3 { color: #0284c7; font-size: 1.3rem; margin-bottom: 1rem; }
+        .info-box { background: #e0f2fe; padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem; border-left: 4px solid #0ea5e9; }
+        @media (max-width: 1024px) { .booking-grid { grid-template-columns: 1fr; } .time-grid { grid-template-columns: repeat(3, 1fr); } }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div style="font-size: 1.5rem; font-weight: bold;">HealthCare Plus</div>
+        <div>
+            <a href="healthcare.html">Home</a>
+            <a href="healthcare-appointments.html">Book Appointment</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <div class="hero-small">
+        <h1>Book Your Appointment</h1>
+        <p style="font-size: 1.2rem;">Choose your doctor and preferred time</p>
+    </div>
+
+    <div class="container">
+        <div class="booking-grid">
+            <div class="doctors-list">
+                <h2>Select a Doctor</h2>
+                <div class="doctor-card selected" onclick="selectDoctor(this, 'Dr. Sarah Johnson')">
+                    <div class="doctor-avatar">👩‍⚕️</div>
+                    <div class="doctor-name">Dr. Sarah Johnson</div>
+                    <div class="doctor-specialty">Family Medicine</div>
+                    <div class="doctor-rating">⭐⭐⭐⭐⭐ 4.9 (245 reviews)</div>
+                    <div style="color: #64748b; font-size: 0.9rem;">15+ years experience</div>
+                </div>
+
+                <div class="doctor-card" onclick="selectDoctor(this, 'Dr. Michael Chen')">
+                    <div class="doctor-avatar">👨‍⚕️</div>
+                    <div class="doctor-name">Dr. Michael Chen</div>
+                    <div class="doctor-specialty">Cardiology</div>
+                    <div class="doctor-rating">⭐⭐⭐⭐⭐ 4.8 (189 reviews)</div>
+                    <div style="color: #64748b; font-size: 0.9rem;">12+ years experience</div>
+                </div>
+
+                <div class="doctor-card" onclick="selectDoctor(this, 'Dr. Emily Rodriguez')">
+                    <div class="doctor-avatar">👩‍⚕️</div>
+                    <div class="doctor-name">Dr. Emily Rodriguez</div>
+                    <div class="doctor-specialty">Pediatrics</div>
+                    <div class="doctor-rating">⭐⭐⭐⭐⭐ 5.0 (312 reviews)</div>
+                    <div style="color: #64748b; font-size: 0.9rem;">18+ years experience</div>
+                </div>
+
+                <div class="doctor-card" onclick="selectDoctor(this, 'Dr. James Wilson')">
+                    <div class="doctor-avatar">👨‍⚕️</div>
+                    <div class="doctor-name">Dr. James Wilson</div>
+                    <div class="doctor-specialty">Orthopedics</div>
+                    <div class="doctor-rating">⭐⭐⭐⭐⭐ 4.7 (156 reviews)</div>
+                    <div style="color: #64748b; font-size: 0.9rem;">10+ years experience</div>
+                </div>
+
+                <div class="doctor-card" onclick="selectDoctor(this, 'Dr. Lisa Anderson')">
+                    <div class="doctor-avatar">👩‍⚕️</div>
+                    <div class="doctor-name">Dr. Lisa Anderson</div>
+                    <div class="doctor-specialty">Dermatology</div>
+                    <div class="doctor-rating">⭐⭐⭐⭐⭐ 4.9 (203 reviews)</div>
+                    <div style="color: #64748b; font-size: 0.9rem;">14+ years experience</div>
+                </div>
+            </div>
+
+            <div class="booking-form">
+                <h2>Appointment Details</h2>
+                
+                <div class="info-box">
+                    <strong>Selected Doctor:</strong> <span id="selectedDoctor">Dr. Sarah Johnson - Family Medicine</span>
+                </div>
+
+                <form onsubmit="event.preventDefault(); bookAppointment();">
+                    <div class="form-section">
+                        <h3>Patient Information</h3>
+                        <div class="form-group">
+                            <label>Full Name *</label>
+                            <input type="text" required placeholder="John Doe">
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div class="form-group">
+                                <label>Date of Birth *</label>
+                                <input type="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Gender *</label>
+                                <select required>
+                                    <option value="">Select</option>
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Email *</label>
+                            <input type="email" required placeholder="john.doe@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number *</label>
+                            <input type="tel" required placeholder="(555) 123-4567">
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Appointment Date & Time</h3>
+                        <div class="form-group">
+                            <label>Select Date *</label>
+                            <input type="date" required id="appointmentDate">
+                        </div>
+                        <div class="form-group">
+                            <label>Select Time *</label>
+                            <div class="time-grid">
+                                <div class="time-slot" onclick="selectTime(this)">9:00 AM</div>
+                                <div class="time-slot" onclick="selectTime(this)">9:30 AM</div>
+                                <div class="time-slot" onclick="selectTime(this)">10:00 AM</div>
+                                <div class="time-slot" onclick="selectTime(this)">10:30 AM</div>
+                                <div class="time-slot" onclick="selectTime(this)">11:00 AM</div>
+                                <div class="time-slot unavailable">11:30 AM</div>
+                                <div class="time-slot" onclick="selectTime(this)">1:00 PM</div>
+                                <div class="time-slot" onclick="selectTime(this)">1:30 PM</div>
+                                <div class="time-slot" onclick="selectTime(this)">2:00 PM</div>
+                                <div class="time-slot unavailable">2:30 PM</div>
+                                <div class="time-slot" onclick="selectTime(this)">3:00 PM</div>
+                                <div class="time-slot" onclick="selectTime(this)">3:30 PM</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Reason for Visit</h3>
+                        <div class="form-group">
+                            <label>Visit Type *</label>
+                            <select required>
+                                <option value="">Select visit type</option>
+                                <option>Annual Checkup</option>
+                                <option>Follow-up Visit</option>
+                                <option>New Patient Visit</option>
+                                <option>Sick Visit</option>
+                                <option>Consultation</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Symptoms / Concerns</label>
+                            <textarea rows="4" placeholder="Please describe your symptoms or reason for visit..."></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn">Confirm Appointment</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedTime = null;
+        let currentDoctor = 'Dr. Sarah Johnson - Family Medicine';
+
+        document.getElementById('appointmentDate').min = new Date().toISOString().split('T')[0];
+
+        function selectDoctor(element, doctorName) {
+            document.querySelectorAll('.doctor-card').forEach(card => card.classList.remove('selected'));
+            element.classList.add('selected');
+            const specialty = element.querySelector('.doctor-specialty').textContent;
+            currentDoctor = doctorName + ' - ' + specialty;
+            document.getElementById('selectedDoctor').textContent = currentDoctor;
+        }
+
+        function selectTime(element) {
+            if (element.classList.contains('unavailable')) return;
+            document.querySelectorAll('.time-slot').forEach(slot => slot.classList.remove('selected'));
+            element.classList.add('selected');
+            selectedTime = element.textContent;
+        }
+
+        function bookAppointment() {
+            if (!selectedTime) {
+                alert('Please select a time slot');
+                return;
+            }
+            alert('Appointment confirmed with ' + currentDoctor + ' at ' + selectedTime + '!\n\nYou will receive a confirmation email shortly.');
+        }
+    </script>
+</body>
+</html>

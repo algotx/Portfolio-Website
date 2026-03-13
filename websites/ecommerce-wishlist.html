@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wishlist - TechStore</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; background: #f5f5f5; color: #333; }
+        .nav { background: #2c3e50; color: #fff; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .nav a { color: #fff; text-decoration: none; margin: 0 1rem; }
+        .hero-small { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; padding: 4rem 2rem; text-align: center; }
+        .hero-small h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem; }
+        .wishlist-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+        .wishlist-stats { display: flex; gap: 2rem; }
+        .stat { background: #fff; padding: 1rem 2rem; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .stat-value { font-size: 2rem; color: #667eea; font-weight: bold; }
+        .stat-label { color: #666; font-size: 0.9rem; }
+        .wishlist-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; }
+        .wishlist-item { background: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: 0.3s; position: relative; }
+        .wishlist-item:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+        .product-img { width: 100%; height: 220px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; font-size: 5rem; color: #fff; }
+        .product-info { padding: 1.5rem; }
+        .product-name { font-size: 1.2rem; font-weight: bold; margin-bottom: 0.5rem; color: #2c3e50; }
+        .product-price { font-size: 1.8rem; color: #e74c3c; font-weight: bold; margin: 1rem 0; }
+        .price-drop { background: #27ae60; color: #fff; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; display: inline-block; margin-bottom: 1rem; }
+        .btn-group { display: flex; gap: 0.5rem; }
+        .btn { padding: 0.8rem 1.5rem; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; flex: 1; transition: 0.3s; }
+        .btn-primary { background: #3498db; color: #fff; }
+        .btn-primary:hover { background: #2980b9; }
+        .btn-secondary { background: #95a5a6; color: #fff; }
+        .btn-secondary:hover { background: #7f8c8d; }
+        .remove-btn { position: absolute; top: 10px; right: 10px; background: rgba(231,76,60,0.9); color: #fff; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; transition: 0.3s; }
+        .remove-btn:hover { background: #c0392b; transform: scale(1.1); }
+        .stock-status { display: inline-block; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: bold; margin-bottom: 1rem; }
+        .in-stock { background: #d4edda; color: #155724; }
+        .low-stock { background: #fff3cd; color: #856404; }
+        .out-stock { background: #f8d7da; color: #721c24; }
+        .empty-state { text-align: center; padding: 5rem 2rem; }
+        .empty-state img { font-size: 5rem; margin-bottom: 2rem; }
+        .filter-bar { background: #fff; padding: 1.5rem; border-radius: 10px; margin-bottom: 2rem; display: flex; gap: 1rem; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .filter-bar select { padding: 0.8rem; border: 2px solid #ddd; border-radius: 8px; font-family: inherit; }
+        @media (max-width: 768px) { .wishlist-stats { flex-direction: column; gap: 1rem; } .filter-bar { flex-direction: column; align-items: stretch; } }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div style="font-size: 1.5rem; font-weight: bold;">TechStore</div>
+        <div>
+            <a href="ecommerce.html">Products</a>
+            <a href="ecommerce-wishlist.html">Wishlist</a>
+            <a href="ecommerce-checkout.html">Cart</a>
+        </div>
+    </nav>
+
+    <div class="hero-small">
+        <h1>My Wishlist</h1>
+        <p style="font-size: 1.2rem;">Save your favorite items for later</p>
+    </div>
+
+    <div class="container">
+        <div class="wishlist-header">
+            <h2 style="color: #2c3e50; font-size: 2rem;">Saved Items (8)</h2>
+            <div class="wishlist-stats">
+                <div class="stat">
+                    <div class="stat-value">$4,892</div>
+                    <div class="stat-label">Total Value</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">Price Drops</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="filter-bar">
+            <span style="font-weight: bold; color: #2c3e50;">Sort by:</span>
+            <select onchange="alert('Sorting by: ' + this.value)">
+                <option>Recently Added</option>
+                <option>Price: Low to High</option>
+                <option>Price: High to Low</option>
+                <option>Name A-Z</option>
+            </select>
+            <select onchange="alert('Filtering by: ' + this.value)">
+                <option>All Items</option>
+                <option>In Stock Only</option>
+                <option>Price Drops</option>
+                <option>Out of Stock</option>
+            </select>
+            <button class="btn btn-primary" style="margin-left: auto;" onclick="alert('Adding all items to cart...')">Add All to Cart</button>
+        </div>
+
+        <div class="wishlist-grid">
+            <div class="wishlist-item">
+                <button class="remove-btn" onclick="this.parentElement.remove(); alert('Removed from wishlist')">×</button>
+                <div class="product-img">💻</div>
+                <div class="product-info">
+                    <div class="product-name">Ultra Laptop Pro</div>
+                    <div class="price-drop">🔥 Price dropped $100!</div>
+                    <div class="product-price">$1,199 <span style="font-size: 1rem; color: #999; text-decoration: line-through;">$1,299</span></div>
+                    <span class="stock-status in-stock">✓ In Stock</span>
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="alert('Added to cart!')">Add to Cart</button>
+                        <button class="btn btn-secondary" onclick="window.location.href='ecommerce-product.html'">View</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wishlist-item">
+                <button class="remove-btn" onclick="this.parentElement.remove(); alert('Removed from wishlist')">×</button>
+                <div class="product-img">📱</div>
+                <div class="product-info">
+                    <div class="product-name">SmartPhone X</div>
+                    <div class="product-price">$899</div>
+                    <span class="stock-status in-stock">✓ In Stock</span>
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="alert('Added to cart!')">Add to Cart</button>
+                        <button class="btn btn-secondary">View</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wishlist-item">
+                <button class="remove-btn" onclick="this.parentElement.remove(); alert('Removed from wishlist')">×</button>
+                <div class="product-img">🎧</div>
+                <div class="product-info">
+                    <div class="product-name">Wireless Headphones Pro</div>
+                    <div class="price-drop">🔥 Price dropped $50!</div>
+                    <div class="product-price">$249 <span style="font-size: 1rem; color: #999; text-decoration: line-through;">$299</span></div>
+                    <span class="stock-status low-stock">⚠ Only 3 left</span>
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="alert('Added to cart!')">Add to Cart</button>
+                        <button class="btn btn-secondary">View</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wishlist-item">
+                <button class="remove-btn" onclick="this.parentElement.remove(); alert('Removed from wishlist')">×</button>
+                <div class="product-img">⌚</div>
+                <div class="product-info">
+                    <div class="product-name">Smart Watch Elite</div>
+                    <div class="product-price">$399</div>
+                    <span class="stock-status in-stock">✓ In Stock</span>
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="alert('Added to cart!')">Add to Cart</button>
+                        <button class="btn btn-secondary">View</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wishlist-item">
+                <button class="remove-btn" onclick="this.parentElement.remove(); alert('Removed from wishlist')">×</button>
+                <div class="product-img">📷</div>
+                <div class="product-info">
+                    <div class="product-name">Digital Camera 4K Pro</div>
+                    <div class="price-drop">🔥 Price dropped $150!</div>
+                    <div class="product-price">$649 <span style="font-size: 1rem; color: #999; text-decoration: line-through;">$799</span></div>
+                    <span class="stock-status in-stock">✓ In Stock</span>
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="alert('Added to cart!')">Add to Cart</button>
+                        <button class="btn btn-secondary">View</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wishlist-item">
+                <button class="remove-btn" onclick="this.parentElement.remove(); alert('Removed from wishlist')">×</button>
+                <div class="product-img">🖥️</div>
+                <div class="product-info">
+                    <div class="product-name">4K Monitor Ultra</div>
+                    <div class="product-price">$499</div>
+                    <span class="stock-status in-stock">✓ In Stock</span>
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="alert('Added to cart!')">Add to Cart</button>
+                        <button class="btn btn-secondary">View</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wishlist-item">
+                <button class="remove-btn" onclick="this.parentElement.remove(); alert('Removed from wishlist')">×</button>
+                <div class="product-img">⌨️</div>
+                <div class="product-info">
+                    <div class="product-name">Mechanical Keyboard RGB</div>
+                    <div class="product-price">$149</div>
+                    <span class="stock-status out-stock">✗ Out of Stock</span>
+                    <div class="btn-group">
+                        <button class="btn btn-secondary" style="flex: 1;" disabled>Notify Me</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wishlist-item">
+                <button class="remove-btn" onclick="this.parentElement.remove(); alert('Removed from wishlist')">×</button>
+                <div class="product-img">🖱️</div>
+                <div class="product-info">
+                    <div class="product-name">Gaming Mouse Pro</div>
+                    <div class="product-price">$79</div>
+                    <span class="stock-status in-stock">✓ In Stock</span>
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="alert('Added to cart!')">Add to Cart</button>
+                        <button class="btn btn-secondary">View</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

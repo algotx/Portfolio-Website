@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Tickets - SoundWave Music</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; background: #0a0a0a; color: #fff; }
+        .nav { background: rgba(138,43,226,0.95); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .nav a { color: #fff; text-decoration: none; margin: 0 1rem; font-weight: bold; }
+        .hero-small { background: linear-gradient(135deg, #8a2be2 0%, #4b0082 100%); padding: 4rem 2rem; text-align: center; }
+        .hero-small h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 3rem 2rem; }
+        .event-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+        .event-card { background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%); border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(138,43,226,0.3); transition: 0.3s; }
+        .event-card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(138,43,226,0.5); }
+        .event-img { width: 100%; height: 200px; background: linear-gradient(135deg, #8a2be2 0%, #4b0082 100%); display: flex; align-items: center; justify-content: center; font-size: 5rem; }
+        .event-info { padding: 2rem; }
+        .event-date { background: #8a2be2; color: #fff; padding: 0.5rem 1rem; border-radius: 20px; display: inline-block; font-size: 0.9rem; font-weight: bold; margin-bottom: 1rem; }
+        .event-name { font-size: 1.5rem; font-weight: bold; margin-bottom: 0.5rem; }
+        .event-venue { color: #999; margin-bottom: 1rem; }
+        .price-range { font-size: 1.3rem; color: #8a2be2; font-weight: bold; margin: 1rem 0; }
+        .btn { background: linear-gradient(135deg, #8a2be2 0%, #4b0082 100%); color: #fff; padding: 1rem 2rem; border: none; border-radius: 25px; cursor: pointer; font-weight: bold; width: 100%; transition: 0.3s; }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(138,43,226,0.5); }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center; }
+        .modal-content { background: #1a1a1a; padding: 3rem; border-radius: 20px; max-width: 800px; width: 90%; max-height: 90vh; overflow-y: auto; }
+        .seat-map { display: grid; grid-template-columns: repeat(10, 1fr); gap: 0.5rem; margin: 2rem 0; }
+        .seat { width: 40px; height: 40px; background: #2a2a2a; border: 2px solid #444; border-radius: 5px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; transition: 0.3s; }
+        .seat:hover { background: #8a2be2; border-color: #8a2be2; }
+        .seat.selected { background: #8a2be2; border-color: #8a2be2; }
+        .seat.taken { background: #666; cursor: not-allowed; opacity: 0.5; }
+        .ticket-type { background: #2a2a2a; padding: 1.5rem; border-radius: 10px; margin: 1rem 0; display: flex; justify-content: space-between; align-items: center; cursor: pointer; border: 2px solid transparent; transition: 0.3s; }
+        .ticket-type:hover { border-color: #8a2be2; }
+        .ticket-type.selected { border-color: #8a2be2; background: rgba(138,43,226,0.2); }
+        .close-modal { position: absolute; top: 1rem; right: 1rem; font-size: 2rem; cursor: pointer; color: #fff; }
+        h2 { color: #8a2be2; font-size: 2rem; margin-bottom: 1.5rem; }
+        .summary-box { background: linear-gradient(135deg, #8a2be2 0%, #4b0082 100%); padding: 2rem; border-radius: 15px; margin-top: 2rem; }
+        .summary-item { display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.2); }
+        .summary-total { font-size: 1.5rem; font-weight: bold; margin-top: 1rem; padding-top: 1rem; border-top: 2px solid #fff; }
+        @media (max-width: 768px) { .seat-map { grid-template-columns: repeat(8, 1fr); } .seat { width: 35px; height: 35px; } }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div style="font-size: 1.5rem; font-weight: bold;">SoundWave</div>
+        <div>
+            <a href="music.html">Home</a>
+            <a href="music-tickets.html">Events</a>
+            <a href="#artists">Artists</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <div class="hero-small">
+        <h1>Upcoming Events</h1>
+        <p style="font-size: 1.2rem;">Get your tickets now for the hottest shows</p>
+    </div>
+
+    <div class="container">
+        <h2>Featured Events</h2>
+        <div class="event-grid">
+            <div class="event-card">
+                <div class="event-img">🎸</div>
+                <div class="event-info">
+                    <div class="event-date">SAT, MAR 20, 2026</div>
+                    <div class="event-name">Rock Legends Live</div>
+                    <div class="event-venue">📍 Madison Square Garden, New York</div>
+                    <div class="price-range">$75 - $250</div>
+                    <button class="btn" onclick="openTicketModal('Rock Legends Live', 'SAT, MAR 20, 2026', 'Madison Square Garden')">Buy Tickets</button>
+                </div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-img">🎤</div>
+                <div class="event-info">
+                    <div class="event-date">FRI, MAR 27, 2026</div>
+                    <div class="event-name">Pop Sensation Tour</div>
+                    <div class="event-venue">📍 Staples Center, Los Angeles</div>
+                    <div class="price-range">$95 - $350</div>
+                    <button class="btn" onclick="openTicketModal('Pop Sensation Tour', 'FRI, MAR 27, 2026', 'Staples Center')">Buy Tickets</button>
+                </div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-img">🎹</div>
+                <div class="event-info">
+                    <div class="event-date">SUN, APR 5, 2026</div>
+                    <div class="event-name">Jazz Night</div>
+                    <div class="event-venue">📍 Blue Note, New York</div>
+                    <div class="price-range">$45 - $120</div>
+                    <button class="btn" onclick="openTicketModal('Jazz Night', 'SUN, APR 5, 2026', 'Blue Note')">Buy Tickets</button>
+                </div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-img">🎵</div>
+                <div class="event-info">
+                    <div class="event-date">SAT, APR 12, 2026</div>
+                    <div class="event-name">Electronic Music Festival</div>
+                    <div class="event-venue">📍 Coachella Valley, California</div>
+                    <div class="price-range">$150 - $500</div>
+                    <button class="btn" onclick="openTicketModal('Electronic Music Festival', 'SAT, APR 12, 2026', 'Coachella Valley')">Buy Tickets</button>
+                </div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-img">🎺</div>
+                <div class="event-info">
+                    <div class="event-date">FRI, APR 18, 2026</div>
+                    <div class="event-name">Classical Symphony</div>
+                    <div class="event-venue">📍 Carnegie Hall, New York</div>
+                    <div class="price-range">$60 - $200</div>
+                    <button class="btn" onclick="openTicketModal('Classical Symphony', 'FRI, APR 18, 2026', 'Carnegie Hall')">Buy Tickets</button>
+                </div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-img">🎸</div>
+                <div class="event-info">
+                    <div class="event-date">SAT, APR 25, 2026</div>
+                    <div class="event-name">Country Music Fest</div>
+                    <div class="event-venue">📍 Grand Ole Opry, Nashville</div>
+                    <div class="price-range">$55 - $180</div>
+                    <button class="btn" onclick="openTicketModal('Country Music Fest', 'SAT, APR 25, 2026', 'Grand Ole Opry')">Buy Tickets</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="ticketModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">×</span>
+            <h2 id="modalEventName">Rock Legends Live</h2>
+            <p style="color: #999; margin-bottom: 2rem;"><span id="modalEventDate">SAT, MAR 20, 2026</span> • <span id="modalEventVenue">Madison Square Garden</span></p>
+
+            <h3 style="color: #8a2be2; margin-bottom: 1rem;">Select Ticket Type</h3>
+            <div class="ticket-type selected" onclick="selectTicketType(this, 75)">
+                <div>
+                    <div style="font-weight: bold; font-size: 1.2rem;">General Admission</div>
+                    <div style="color: #999; font-size: 0.9rem;">Standing room only</div>
+                </div>
+                <div style="font-size: 1.5rem; color: #8a2be2; font-weight: bold;">$75</div>
+            </div>
+            <div class="ticket-type" onclick="selectTicketType(this, 150)">
+                <div>
+                    <div style="font-weight: bold; font-size: 1.2rem;">Reserved Seating</div>
+                    <div style="color: #999; font-size: 0.9rem;">Assigned seat in main floor</div>
+                </div>
+                <div style="font-size: 1.5rem; color: #8a2be2; font-weight: bold;">$150</div>
+            </div>
+            <div class="ticket-type" onclick="selectTicketType(this, 250)">
+                <div>
+                    <div style="font-weight: bold; font-size: 1.2rem;">VIP Package</div>
+                    <div style="color: #999; font-size: 0.9rem;">Front row + meet & greet</div>
+                </div>
+                <div style="font-size: 1.5rem; color: #8a2be2; font-weight: bold;">$250</div>
+            </div>
+
+            <h3 style="color: #8a2be2; margin: 2rem 0 1rem;">Select Seats</h3>
+            <div style="text-align: center; margin-bottom: 1rem;">
+                <span style="margin: 0 1rem;">🟦 Available</span>
+                <span style="margin: 0 1rem;">🟪 Selected</span>
+                <span style="margin: 0 1rem;">⬛ Taken</span>
+            </div>
+            <div style="text-align: center; margin-bottom: 1rem; color: #8a2be2; font-weight: bold;">STAGE</div>
+            <div class="seat-map" id="seatMap"></div>
+
+            <div class="summary-box">
+                <h3 style="margin-bottom: 1rem;">Order Summary</h3>
+                <div class="summary-item">
+                    <span>Ticket Type:</span>
+                    <span id="summaryType">General Admission</span>
+                </div>
+                <div class="summary-item">
+                    <span>Number of Tickets:</span>
+                    <span id="summaryCount">0</span>
+                </div>
+                <div class="summary-item">
+                    <span>Price per Ticket:</span>
+                    <span id="summaryPrice">$75</span>
+                </div>
+                <div class="summary-item">
+                    <span>Service Fee:</span>
+                    <span id="summaryFee">$0</span>
+                </div>
+                <div class="summary-total">
+                    <span>Total:</span>
+                    <span id="summaryTotal">$0</span>
+                </div>
+            </div>
+
+            <button class="btn" style="margin-top: 2rem;" onclick="purchaseTickets()">Complete Purchase</button>
+        </div>
+    </div>
+
+    <script>
+        let selectedSeats = [];
+        let ticketPrice = 75;
+        let ticketType = 'General Admission';
+
+        function openTicketModal(name, date, venue) {
+            document.getElementById('modalEventName').textContent = name;
+            document.getElementById('modalEventDate').textContent = date;
+            document.getElementById('modalEventVenue').textContent = venue;
+            document.getElementById('ticketModal').style.display = 'flex';
+            generateSeats();
+        }
+
+        function closeModal() {
+            document.getElementById('ticketModal').style.display = 'none';
+            selectedSeats = [];
+        }
+
+        function generateSeats() {
+            const seatMap = document.getElementById('seatMap');
+            seatMap.innerHTML = '';
+            for (let i = 1; i <= 80; i++) {
+                const seat = document.createElement('div');
+                seat.className = 'seat';
+                seat.textContent = i;
+                if (Math.random() > 0.7) {
+                    seat.classList.add('taken');
+                } else {
+                    seat.onclick = () => toggleSeat(seat, i);
+                }
+                seatMap.appendChild(seat);
+            }
+        }
+
+        function toggleSeat(element, seatNum) {
+            if (element.classList.contains('taken')) return;
+            element.classList.toggle('selected');
+            if (element.classList.contains('selected')) {
+                selectedSeats.push(seatNum);
+            } else {
+                selectedSeats = selectedSeats.filter(s => s !== seatNum);
+            }
+            updateSummary();
+        }
+
+        function selectTicketType(element, price) {
+            document.querySelectorAll('.ticket-type').forEach(t => t.classList.remove('selected'));
+            element.classList.add('selected');
+            ticketPrice = price;
+            ticketType = element.querySelector('div > div').textContent;
+            updateSummary();
+        }
+
+        function updateSummary() {
+            const count = selectedSeats.length;
+            const subtotal = count * ticketPrice;
+            const fee = subtotal * 0.1;
+            const total = subtotal + fee;
+
+            document.getElementById('summaryType').textContent = ticketType;
+            document.getElementById('summaryCount').textContent = count;
+            document.getElementById('summaryPrice').textContent = '$' + ticketPrice;
+            document.getElementById('summaryFee').textContent = '$' + fee.toFixed(2);
+            document.getElementById('summaryTotal').textContent = '$' + total.toFixed(2);
+        }
+
+        function purchaseTickets() {
+            if (selectedSeats.length === 0) {
+                alert('Please select at least one seat');
+                return;
+            }
+            alert('Purchase confirmed! Seats: ' + selectedSeats.join(', ') + '\n\nYou will receive your tickets via email.');
+            closeModal();
+        }
+    </script>
+</body>
+</html>
